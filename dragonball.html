@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dragon Ball - AnimeVerse</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --db-primary: #ff6b35;
+            --db-secondary: #ffd23f;
+            --db-accent: #ff4444;
+            --db-blue: #4a90e2;
+            --db-green: #27ae60;
+            --db-purple: #9b59b6;
+            --db-gradient: linear-gradient(135deg, #ff6b35 0%, #ffd23f 50%, #ff4444 100%);
+        }
+
+        .db-hero {
+            background: var(--db-gradient);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .db-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="dragonball" width="25" height="25" patternUnits="userSpaceOnUse"><circle cx="12.5" cy="12.5" r="8" fill="white" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23dragonball)"/></svg>');
+            animation: dragonballFloat 20s linear infinite;
+        }
+
+        @keyframes dragonballFloat {
+            0% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-30px) rotate(180deg); }
+            100% { transform: translateY(0px) rotate(360deg); }
+        }
+
+        .goku-character {
+            position: relative;
+            animation: gokuFloat 4s ease-in-out infinite;
+        }
+
+        @keyframes gokuFloat {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-30px) rotate(5deg); }
+        }
+
+        .energy-blast {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            background: radial-gradient(circle, rgba(255,107,53,0.8) 0%, rgba(255,210,63,0.6) 50%, transparent 70%);
+            border-radius: 50%;
+            animation: energyExpand 0.6s ease-out;
+            pointer-events: none;
+        }
+
+        @keyframes energyExpand {
+            0% { transform: scale(0) rotate(0deg); opacity: 1; }
+            100% { transform: scale(3) rotate(360deg); opacity: 0; }
+        }
+
+        .hero-title {
+            font-weight: 900;
+            text-shadow: 3px 3px 0px var(--db-blue);
+            color: white;
+        }
+
+        .saiyan-button {
+            background: var(--db-accent);
+            color: white;
+            border: 3px solid var(--db-secondary);
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            transition: all 0.3s ease;
+        }
+
+        .saiyan-button:hover {
+            background: var(--db-secondary);
+            color: var(--db-accent);
+            transform: scale(1.1) rotate(-2deg);
+            box-shadow: 0 10px 30px rgba(255, 68, 68, 0.4);
+        }
+
+        .floating-icons .floating-icon {
+            color: var(--db-secondary);
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .saiyan-card {
+            background: linear-gradient(145deg, #2c3e50, #34495e);
+            color: white;
+            border: 2px solid var(--db-secondary);
+            transition: all 0.3s ease;
+        }
+
+        .saiyan-card:hover {
+            transform: translateY(-10px) scale(1.05);
+            box-shadow: 0 20px 40px rgba(255, 107, 53, 0.3);
+            border-color: var(--db-primary);
+        }
+
+        .power-level {
+            background: var(--db-gradient);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            font-weight: 700;
+            font-size: 0.9rem;
+        }
+
+        .trending {
+            background: #ecf0f1;
+        }
+
+        .genres {
+            background: #bdc3c7;
+        }
+
+        .about {
+            background: #ecf0f1;
+        }
+
+        .contact {
+            background: #bdc3c7;
+        }
+
+        .section-title {
+            color: #2c3e50;
+        }
+
+        .anime-card, .genre-card {
+            background: white;
+            color: #2c3e50;
+            border: 1px solid var(--db-secondary);
+        }
+
+        .anime-card:hover, .genre-card:hover {
+            border-color: var(--db-primary);
+        }
+
+        .stat-item {
+            background: white;
+            color: #2c3e50;
+            border: 1px solid var(--db-secondary);
+        }
+
+        .contact-item {
+            background: white;
+            color: #2c3e50;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            background: white;
+            color: #2c3e50;
+            border-color: var(--db-secondary);
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            border-color: var(--db-primary);
+        }
+    </style>
+</head>
+<body>
+    <!-- Floating Icons -->
+    <div class="floating-icons">
+        <div class="floating-icon" data-speed="2">🐉</div>
+        <div class="floating-icon" data-speed="1.5">⚡</div>
+        <div class="floating-icon" data-speed="3">🔥</div>
+        <div class="floating-icon" data-speed="2.5">💥</div>
+        <div class="floating-icon" data-speed="1.8">🌟</div>
+        <div class="floating-icon" data-speed="2.2">👊</div>
+        <div class="floating-icon" data-speed="1.3">💪</div>
+        <div class="floating-icon" data-speed="2.8">✨</div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <span class="logo-text">AnimeVerse</span>
+                <span class="logo-emoji">🎌</span>
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item"><a href="index.html" class="nav-link">Home 🏠</a></li>
+                <li class="nav-item"><a href="#saiyans" class="nav-link">Saiyans 💪</a></li>
+                <li class="nav-item"><a href="#techniques" class="nav-link">Techniques ⚡</a></li>
+                <li class="nav-item"><a href="#transformations" class="nav-link">Transformations 🌟</a></li>
+                <li class="nav-item"><a href="#gallery" class="nav-link">Gallery 🖼️</a></li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero db-hero">
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1 class="hero-title">
+                    DRAGON BALL <span class="emoji">🐉</span>
+                </h1>
+                <p class="hero-subtitle">
+                    Join Goku and his friends in epic battles across the universe! 
+                    Master powerful techniques and achieve incredible transformations! 
+                    <span class="emoji">⚡</span>
+                </p>
+                <div class="hero-buttons">
+                    <button class="btn saiyan-button" id="kamehamehaBtn">
+                        KAMEHAMEHA <span class="emoji">💥</span>
+                    </button>
+                    <button class="btn btn-secondary">
+                        Watch Trailer <span class="emoji">🎬</span>
+                    </button>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="goku-character">
+                    <div class="character-circle">
+                        <span class="character-emoji">👨‍🦰</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Saiyans Section -->
+    <section id="saiyans" class="trending">
+        <div class="container">
+            <h2 class="section-title">
+                Legendary Saiyans <span class="emoji">💪</span>
+            </h2>
+            <div class="anime-grid">
+                <div class="anime-card saiyan-card" data-aos="fade-up">
+                    <div class="anime-image">
+                        <span class="anime-emoji">👨‍🦰</span>
+                        <div class="power-level">Power: ∞</div>
+                    </div>
+                    <div class="anime-info">
+                        <h3>Goku</h3>
+                        <p>The main protagonist and strongest Saiyan warrior</p>
+                        <div class="rating">
+                            <span class="stars">⭐⭐⭐⭐⭐</span>
+                            <span class="score">9.9</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="anime-card saiyan-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="anime-image">
+                        <span class="anime-emoji">👨‍🦱</span>
+                        <div class="power-level">Power: 9.8</div>
+                    </div>
+                    <div class="anime-info">
+                        <h3>Vegeta</h3>
+                        <p>Prince of Saiyans and Goku's rival turned ally</p>
+                        <div class="rating">
+                            <span class="stars">⭐⭐⭐⭐⭐</span>
+                            <span class="score">9.8</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="anime-card saiyan-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="anime-image">
+                        <span class="anime-emoji">👶</span>
+                        <div class="power-level">Power: 9.5</div>
+                    </div>
+                    <div class="anime-info">
+                        <h3>Gohan</h3>
+                        <p>Goku's son with incredible hidden potential</p>
+                        <div class="rating">
+                            <span class="stars">⭐⭐⭐⭐⭐</span>
+                            <span class="score">9.5</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="anime-card saiyan-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="anime-image">
+                        <span class="anime-emoji">👨‍🦲</span>
+                        <div class="power-level">Power: 9.3</div>
+                    </div>
+                    <div class="anime-info">
+                        <h3>Piccolo</h3>
+                        <p>Namekian warrior and Gohan's mentor</p>
+                        <div class="rating">
+                            <span class="stars">⭐⭐⭐⭐⭐</span>
+                            <span class="score">9.3</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Techniques Section -->
+    <section id="techniques" class="genres">
+        <div class="container">
+            <h2 class="section-title">
+                Powerful Techniques <span class="emoji">⚡</span>
+            </h2>
+            <div class="genre-grid">
+                <div class="genre-card" data-aos="zoom-in">
+                    <div class="genre-icon">💥</div>
+                    <h3>Kamehameha</h3>
+                    <p>Goku's signature energy wave</p>
+                </div>
+                <div class="genre-card" data-aos="zoom-in" data-aos-delay="100">
+                    <div class="genre-icon">⚡</div>
+                    <h3>Final Flash</h3>
+                    <p>Vegeta's powerful energy blast</p>
+                </div>
+                <div class="genre-card" data-aos="zoom-in" data-aos-delay="200">
+                    <div class="genre-icon">🔥</div>
+                    <h3>Special Beam Cannon</h3>
+                    <p>Piccolo's piercing attack</p>
+                </div>
+                <div class="genre-card" data-aos="zoom-in" data-aos-delay="300">
+                    <div class="genre-icon">🌟</div>
+                    <h3>Spirit Bomb</h3>
+                    <p>Energy gathered from all living things</p>
+                </div>
+                <div class="genre-card" data-aos="zoom-in" data-aos-delay="400">
+                    <div class="genre-icon">👊</div>
+                    <h3>Dragon Fist</h3>
+                    <p>Goku's ultimate physical attack</p>
+                </div>
+                <div class="genre-card" data-aos="zoom-in" data-aos-delay="500">
+                    <div class="genre-icon">💫</div>
+                    <h3>Instant Transmission</h3>
+                    <p>Teleportation technique</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Transformations Section -->
+    <section id="transformations" class="about">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-text" data-aos="fade-right">
+                    <h2 class="section-title">
+                        Saiyan Transformations <span class="emoji">🌟</span>
+                    </h2>
+                    <p>
+                        Saiyans have the ability to transform into various powerful forms, each increasing 
+                        their strength exponentially. From Super Saiyan to Ultra Instinct, each transformation 
+                        represents a new level of power and mastery. <span class="emoji">💪</span>
+                    </p>
+                    <div class="features">
+                        <div class="feature">
+                            <span class="feature-icon">🌟</span>
+                            <span>Super Saiyan</span>
+                        </div>
+                        <div class="feature">
+                            <span class="feature-icon">⚡</span>
+                            <span>Super Saiyan Blue</span>
+                        </div>
+                        <div class="feature">
+                            <span class="feature-icon">💫</span>
+                            <span>Ultra Instinct</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-visual" data-aos="fade-left">
+                    <div class="stats-container">
+                        <div class="stat-item">
+                            <div class="stat-number">50x</div>
+                            <div class="stat-label">Super Saiyan Power</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">1000+</div>
+                            <div class="stat-label">Episodes</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">∞</div>
+                            <div class="stat-label">Power Potential</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="gallery" class="contact">
+        <div class="container">
+            <h2 class="section-title">
+                Epic Battles <span class="emoji">⚔️</span>
+            </h2>
+            <div class="anime-grid">
+                <div class="anime-card" data-aos="fade-up">
+                    <div class="anime-image">
+                        <span class="anime-emoji">⚔️</span>
+                    </div>
+                    <div class="anime-info">
+                        <h3>Goku vs Frieza</h3>
+                        <p>The legendary battle on Namek</p>
+                    </div>
+                </div>
+                <div class="anime-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="anime-image">
+                        <span class="anime-emoji">🌟</span>
+                    </div>
+                    <div class="anime-info">
+                        <h3>Super Saiyan Awakening</h3>
+                        <p>Goku's first transformation</p>
+                    </div>
+                </div>
+                <div class="anime-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="anime-image">
+                        <span class="anime-emoji">💫</span>
+                    </div>
+                    <div class="anime-info">
+                        <h3>Ultra Instinct</h3>
+                        <p>Goku's ultimate form</p>
+                    </div>
+                </div>
+                <div class="anime-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="anime-image">
+                        <span class="anime-emoji">🐉</span>
+                    </div>
+                    <div class="anime-info">
+                        <h3>Dragon Ball Fusion</h3>
+                        <p>Goku and Vegeta combine</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Dragon Ball <span class="emoji">🐉</span></h3>
+                    <p>The ultimate battle for the universe</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-facebook"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>Saiyan Forms</h4>
+                    <ul>
+                        <li><a href="#">Super Saiyan</a></li>
+                        <li><a href="#">Super Saiyan Blue</a></li>
+                        <li><a href="#">Ultra Instinct</a></li>
+                        <li><a href="#">Fusion</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Techniques</h4>
+                    <ul>
+                        <li><a href="#">Kamehameha</a></li>
+                        <li><a href="#">Final Flash</a></li>
+                        <li><a href="#">Spirit Bomb</a></li>
+                        <li><a href="#">Instant Transmission</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Dragon Ball. All rights reserved. <span class="emoji">🐉</span></p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        // Dragon Ball specific interactions
+        const kamehamehaBtn = document.getElementById('kamehamehaBtn');
+        
+        kamehamehaBtn.addEventListener('click', function(e) {
+            // Create energy blast effect
+            const energyBlast = document.createElement('div');
+            energyBlast.className = 'energy-blast';
+            energyBlast.style.left = (e.clientX - 50) + 'px';
+            energyBlast.style.top = (e.clientY - 50) + 'px';
+            document.body.appendChild(energyBlast);
+            
+            // Remove effect after animation
+            setTimeout(() => {
+                energyBlast.remove();
+            }, 600);
+            
+            // Screen shake effect
+            document.body.style.animation = 'screenShake 0.8s ease-in-out';
+            setTimeout(() => {
+                document.body.style.animation = '';
+            }, 800);
+        });
+
+        // Add screen shake animation
+        const shakeStyle = document.createElement('style');
+        shakeStyle.textContent = `
+            @keyframes screenShake {
+                0%, 100% { transform: translateX(0) translateY(0); }
+                25% { transform: translateX(-10px) translateY(-5px); }
+                50% { transform: translateX(10px) translateY(5px); }
+                75% { transform: translateX(-5px) translateY(-10px); }
+            }
+        `;
+        document.head.appendChild(shakeStyle);
+
+        // Random energy effects
+        setInterval(() => {
+            if (Math.random() < 0.06) {
+                const energyBlast = document.createElement('div');
+                energyBlast.className = 'energy-blast';
+                energyBlast.style.left = Math.random() * window.innerWidth + 'px';
+                energyBlast.style.top = Math.random() * window.innerHeight + 'px';
+                document.body.appendChild(energyBlast);
+                
+                setTimeout(() => {
+                    energyBlast.remove();
+                }, 600);
+            }
+        }, 3000);
+
+        // Power level counter animation
+        const powerLevels = document.querySelectorAll('.power-level');
+        powerLevels.forEach(level => {
+            level.addEventListener('mouseenter', function() {
+                this.style.transform = 'scale(1.2)';
+                this.style.background = 'var(--db-accent)';
+            });
+            
+            level.addEventListener('mouseleave', function() {
+                this.style.transform = '';
+                this.style.background = '';
+            });
+        });
+
+        // Saiyan transformation effect
+        const saiyanCards = document.querySelectorAll('.saiyan-card');
+        saiyanCards.forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-15px) scale(1.05) rotate(3deg)';
+                this.style.boxShadow = '0 25px 50px rgba(255, 107, 53, 0.4)';
+                this.style.borderColor = 'var(--db-accent)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = '';
+                this.style.boxShadow = '';
+                this.style.borderColor = '';
+            });
+        });
+    </script>
+</body>
+</html> 

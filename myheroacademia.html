@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Hero Academia - AnimeVerse</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --mha-primary: #ff6b35;
+            --mha-secondary: #4a90e2;
+            --mha-accent: #f39c12;
+            --mha-green: #27ae60;
+            --mha-purple: #9b59b6;
+            --mha-red: #e74c3c;
+            --mha-gradient: linear-gradient(135deg, #ff6b35 0%, #4a90e2 50%, #f39c12 100%);
+        }
+
+        .mha-hero {
+            background: var(--mha-gradient);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .mha-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="hero" width="25" height="25" patternUnits="userSpaceOnUse"><text x="12.5" y="20" text-anchor="middle" fill="white" opacity="0.1" font-size="20">🦸</text></pattern></defs><rect width="100" height="100" fill="url(%23hero)"/></svg>');
+            animation: heroFloat 15s linear infinite;
+        }
+
+        @keyframes heroFloat {
+            0% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(180deg); }
+            100% { transform: translateY(0px) rotate(360deg); }
+        }
+
+        .deku-character {
+            position: relative;
+            animation: dekuFloat 5s ease-in-out infinite;
+        }
+
+        @keyframes dekuFloat {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-25px) rotate(3deg); }
+        }
+
+        .quirk-effect {
+            position: absolute;
+            width: 120px;
+            height: 120px;
+            background: radial-gradient(circle, rgba(255,107,53,0.4) 0%, rgba(74,144,226,0.3) 50%, transparent 70%);
+            border-radius: 50%;
+            animation: quirkExpand 0.8s ease-out;
+            pointer-events: none;
+        }
+
+        @keyframes quirkExpand {
+            0% { transform: scale(0) rotate(0deg); opacity: 1; }
+            100% { transform: scale(2.5) rotate(360deg); opacity: 0; }
+        }
+
+        .hero-title {
+            font-weight: 900;
+            text-shadow: 3px 3px 0px var(--mha-secondary);
+            color: white;
+        }
+
+        .hero-button {
+            background: var(--mha-secondary);
+            color: white;
+            border: 3px solid var(--mha-accent);
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            transition: all 0.3s ease;
+        }
+
+        .hero-button:hover {
+            background: var(--mha-accent);
+            color: var(--mha-secondary);
+            transform: scale(1.1) rotate(-1deg);
+            box-shadow: 0 10px 30px rgba(74, 144, 226, 0.4);
+        }
+
+        .floating-icons .floating-icon {
+            color: var(--mha-accent);
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .hero-card {
+            background: linear-gradient(145deg, #2c3e50, #34495e);
+            color: white;
+            border: 2px solid var(--mha-accent);
+            transition: all 0.3s ease;
+        }
+
+        .hero-card:hover {
+            transform: translateY(-10px) scale(1.05);
+            box-shadow: 0 20px 40px rgba(255, 107, 53, 0.3);
+            border-color: var(--mha-primary);
+        }
+
+        .hero-rank {
+            background: var(--mha-gradient);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            font-weight: 700;
+            font-size: 0.9rem;
+        }
+
+        .trending {
+            background: #ecf0f1;
+        }
+
+        .genres {
+            background: #bdc3c7;
+        }
+
+        .about {
+            background: #ecf0f1;
+        }
+
+        .contact {
+            background: #bdc3c7;
+        }
+
+        .section-title {
+            color: #2c3e50;
+        }
+
+        .anime-card, .genre-card {
+            background: white;
+            color: #2c3e50;
+            border: 1px solid var(--mha-accent);
+        }
+
+        .anime-card:hover, .genre-card:hover {
+            border-color: var(--mha-primary);
+        }
+
+        .stat-item {
+            background: white;
+            color: #2c3e50;
+            border: 1px solid var(--mha-accent);
+        }
+
+        .contact-item {
+            background: white;
+            color: #2c3e50;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            background: white;
+            color: #2c3e50;
+            border-color: var(--mha-accent);
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            border-color: var(--mha-primary);
+        }
+    </style>
+</head>
+<body>
+    <!-- Floating Icons -->
+    <div class="floating-icons">
+        <div class="floating-icon" data-speed="2">🦸</div>
+        <div class="floating-icon" data-speed="1.5">⚡</div>
+        <div class="floating-icon" data-speed="3">🔥</div>
+        <div class="floating-icon" data-speed="2.5">💪</div>
+        <div class="floating-icon" data-speed="1.8">🌟</div>
+        <div class="floating-icon" data-speed="2.2">🎓</div>
+        <div class="floating-icon" data-speed="1.3">🦹</div>
+        <div class="floating-icon" data-speed="2.8">✨</div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <span class="logo-text">AnimeVerse</span>
+                <span class="logo-emoji">🎌</span>
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item"><a href="index.html" class="nav-link">Home 🏠</a></li>
+                <li class="nav-item"><a href="#heroes" class="nav-link">Heroes 🦸</a></li>
+                <li class="nav-item"><a href="#quirks" class="nav-link">Quirks ⚡</a></li>
+                <li class="nav-item"><a href="#academy" class="nav-link">Academy 🎓</a></li>
+                <li class="nav-item"><a href="#gallery" class="nav-link">Gallery 🖼️</a></li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero mha-hero">
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1 class="hero-title">
+                    MY HERO ACADEMIA <span class="emoji">🦸</span>
+                </h1>
+                <p class="hero-subtitle">
+                    In a world where 80% of the population has superpowers called Quirks, 
+                    follow Izuku Midoriya's journey to become the greatest hero! 
+                    <span class="emoji">⚡</span>
+                </p>
+                <div class="hero-buttons">
+                    <button class="btn hero-button" id="quirkBtn">
+                        ONE FOR ALL <span class="emoji">💪</span>
+                    </button>
+                    <button class="btn btn-secondary">
+                        Watch Trailer <span class="emoji">🎬</span>
+                    </button>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="deku-character">
+                    <div class="character-circle">
+                        <span class="character-emoji">👨‍🎓</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Heroes Section -->
+    <section id="heroes" class="trending">
+        <div class="container">
+            <h2 class="section-title">
+                Pro Heroes <span class="emoji">🦸</span>
+            </h2>
+            <div class="anime-grid">
+                <div class="anime-card hero-card" data-aos="fade-up">
+                    <div class="anime-image">
+                        <span class="anime-emoji">👨‍🎓</span>
+                        <div class="hero-rank">Student</div>
+                    </div>
+                    <div class="anime-info">
+                        <h3>Izuku Midoriya (Deku)</h3>
+                        <p>Quirkless boy who inherits One For All</p>
+                        <div class="rating">
+                            <span class="stars">⭐⭐⭐⭐⭐</span>
+                            <span class="score">9.8</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="anime-card hero-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="anime-image">
+                        <span class="anime-emoji">👨‍🦰</span>
+                        <div class="hero-rank">#1 Hero</div>
+                    </div>
+                    <div class="anime-info">
+                        <h3>All Might</h3>
+                        <p>Symbol of Peace and One For All's previous wielder</p>
+                        <div class="rating">
+                            <span class="stars">⭐⭐⭐⭐⭐</span>
+                            <span class="score">9.9</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="anime-card hero-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="anime-image">
+                        <span class="anime-emoji">👨‍🦱</span>
+                        <div class="hero-rank">Student</div>
+                    </div>
+                    <div class="anime-info">
+                        <h3>Katsuki Bakugo</h3>
+                        <p>Explosive hero with a fiery personality</p>
+                        <div class="rating">
+                            <span class="stars">⭐⭐⭐⭐⭐</span>
+                            <span class="score">9.6</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="anime-card hero-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="anime-image">
+                        <span class="anime-emoji">👩‍🦰</span>
+                        <div class="hero-rank">Student</div>
+                    </div>
+                    <div class="anime-info">
+                        <h3>Ochaco Uraraka</h3>
+                        <p>Gravity manipulation hero</p>
+                        <div class="rating">
+                            <span class="stars">⭐⭐⭐⭐⭐</span>
+                            <span class="score">9.4</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quirks Section -->
+    <section id="quirks" class="genres">
+        <div class="container">
+            <h2 class="section-title">
+                Unique Quirks <span class="emoji">⚡</span>
+            </h2>
+            <div class="genre-grid">
+                <div class="genre-card" data-aos="zoom-in">
+                    <div class="genre-icon">💪</div>
+                    <h3>One For All</h3>
+                    <p>Power stockpiling quirk</p>
+                </div>
+                <div class="genre-card" data-aos="zoom-in" data-aos-delay="100">
+                    <div class="genre-icon">💥</div>
+                    <h3>Explosion</h3>
+                    <p>Nitroglycerin sweat quirk</p>
+                </div>
+                <div class="genre-card" data-aos="zoom-in" data-aos-delay="200">
+                    <div class="genre-icon">🌍</div>
+                    <h3>Zero Gravity</h3>
+                    <p>Gravity manipulation quirk</p>
+                </div>
+                <div class="genre-card" data-aos="zoom-in" data-aos-delay="300">
+                    <div class="genre-icon">🔥</div>
+                    <h3>Hellflame</h3>
+                    <p>Fire manipulation quirk</p>
+                </div>
+                <div class="genre-card" data-aos="zoom-in" data-aos-delay="400">
+                    <div class="genre-icon">⚡</div>
+                    <h3>Electrification</h3>
+                    <p>Electric discharge quirk</p>
+                </div>
+                <div class="genre-card" data-aos="zoom-in" data-aos-delay="500">
+                    <div class="genre-icon">🧠</div>
+                    <h3>Brainwashing</h3>
+                    <p>Mind control quirk</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Academy Section -->
+    <section id="academy" class="about">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-text" data-aos="fade-right">
+                    <h2 class="section-title">
+                        U.A. High School <span class="emoji">🎓</span>
+                    </h2>
+                    <p>
+                        U.A. High School is the most prestigious hero academy in Japan, training the next 
+                        generation of heroes. Students learn to master their quirks and become professional 
+                        heroes through rigorous training and real-world experience. <span class="emoji">🦸</span>
+                    </p>
+                    <div class="features">
+                        <div class="feature">
+                            <span class="feature-icon">🎓</span>
+                            <span>Hero Course</span>
+                        </div>
+                        <div class="feature">
+                            <span class="feature-icon">🔬</span>
+                            <span>Support Course</span>
+                        </div>
+                        <div class="feature">
+                            <span class="feature-icon">👮</span>
+                            <span>Management Course</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-visual" data-aos="fade-left">
+                    <div class="stats-container">
+                        <div class="stat-item">
+                            <div class="stat-number">80%</div>
+                            <div class="stat-label">Quirk Users</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">20%</div>
+                            <div class="stat-label">Quirkless</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">∞</div>
+                            <div class="stat-label">Quirk Types</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="gallery" class="contact">
+        <div class="container">
+            <h2 class="section-title">
+                Hero Moments <span class="emoji">🎬</span>
+            </h2>
+            <div class="anime-grid">
+                <div class="anime-card" data-aos="fade-up">
+                    <div class="anime-image">
+                        <span class="anime-emoji">💪</span>
+                    </div>
+                    <div class="anime-info">
+                        <h3>One For All Awakening</h3>
+                        <p>Deku's first use of his quirk</p>
+                    </div>
+                </div>
+                <div class="anime-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="anime-image">
+                        <span class="anime-emoji">🎓</span>
+                    </div>
+                    <div class="anime-info">
+                        <h3>U.A. Entrance Exam</h3>
+                        <p>The beginning of hero training</p>
+                    </div>
+                </div>
+                <div class="anime-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="anime-image">
+                        <span class="anime-emoji">⚔️</span>
+                    </div>
+                    <div class="anime-info">
+                        <h3>USJ Attack</h3>
+                        <p>First encounter with villains</p>
+                    </div>
+                </div>
+                <div class="anime-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="anime-image">
+                        <span class="anime-emoji">🏆</span>
+                    </div>
+                    <div class="anime-info">
+                        <h3>Sports Festival</h3>
+                        <p>Hero students compete</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>My Hero Academia <span class="emoji">🦸</span></h3>
+                    <p>Plus Ultra! The journey to become a hero</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-facebook"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>Hero Classes</h4>
+                    <ul>
+                        <li><a href="#">Class 1-A</a></li>
+                        <li><a href="#">Class 1-B</a></li>
+                        <li><a href="#">Pro Heroes</a></li>
+                        <li><a href="#">Villains</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Quirk Categories</h4>
+                    <ul>
+                        <li><a href="#">Emitter Quirks</a></li>
+                        <li><a href="#">Transformation Quirks</a></li>
+                        <li><a href="#">Mutation Quirks</a></li>
+                        <li><a href="#">Stockpile Quirks</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 My Hero Academia. All rights reserved. <span class="emoji">🦸</span></p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        // My Hero Academia specific interactions
+        const quirkBtn = document.getElementById('quirkBtn');
+        
+        quirkBtn.addEventListener('click', function(e) {
+            // Create quirk effect
+            const quirkEffect = document.createElement('div');
+            quirkEffect.className = 'quirk-effect';
+            quirkEffect.style.left = (e.clientX - 60) + 'px';
+            quirkEffect.style.top = (e.clientY - 60) + 'px';
+            document.body.appendChild(quirkEffect);
+            
+            // Remove effect after animation
+            setTimeout(() => {
+                quirkEffect.remove();
+            }, 800);
+            
+            // Power surge effect
+            document.body.style.animation = 'powerSurge 0.8s ease-in-out';
+            setTimeout(() => {
+                document.body.style.animation = '';
+            }, 800);
+        });
+
+        // Add power surge animation
+        const surgeStyle = document.createElement('style');
+        surgeStyle.textContent = `
+            @keyframes powerSurge {
+                0%, 100% { filter: brightness(1) saturate(1); }
+                50% { filter: brightness(1.3) saturate(1.2); }
+            }
+        `;
+        document.head.appendChild(surgeStyle);
+
+        // Random quirk effects
+        setInterval(() => {
+            if (Math.random() < 0.05) {
+                const quirkEffect = document.createElement('div');
+                quirkEffect.className = 'quirk-effect';
+                quirkEffect.style.left = Math.random() * window.innerWidth + 'px';
+                quirkEffect.style.top = Math.random() * window.innerHeight + 'px';
+                document.body.appendChild(quirkEffect);
+                
+                setTimeout(() => {
+                    quirkEffect.remove();
+                }, 800);
+            }
+        }, 3500);
+
+        // Hero transformation effect
+        const heroCards = document.querySelectorAll('.hero-card');
+        heroCards.forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-15px) scale(1.05) rotate(2deg)';
+                this.style.boxShadow = '0 25px 50px rgba(255, 107, 53, 0.4)';
+                this.style.borderColor = 'var(--mha-primary)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = '';
+                this.style.boxShadow = '';
+                this.style.borderColor = '';
+            });
+        });
+
+        // Plus Ultra effect
+        const plusUltra = () => {
+            const notification = document.createElement('div');
+            notification.style.cssText = `
+                position: fixed;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                background: var(--mha-gradient);
+                color: white;
+                padding: 2rem;
+                border-radius: 20px;
+                font-size: 2rem;
+                font-weight: 900;
+                z-index: 10000;
+                animation: plusUltraAnim 2s ease-in-out;
+            `;
+            notification.textContent = 'PLUS ULTRA! 🦸';
+            document.body.appendChild(notification);
+            
+            setTimeout(() => {
+                notification.remove();
+            }, 2000);
+        };
+
+        // Add plus ultra animation
+        const plusUltraStyle = document.createElement('style');
+        plusUltraStyle.textContent = `
+            @keyframes plusUltraAnim {
+                0% { transform: translate(-50%, -50%) scale(0); opacity: 0; }
+                50% { transform: translate(-50%, -50%) scale(1.2); opacity: 1; }
+                100% { transform: translate(-50%, -50%) scale(1); opacity: 0; }
+            }
+        `;
+        document.head.appendChild(plusUltraStyle);
+
+        // Trigger plus ultra on specific key combination
+        let keySequence = [];
+        document.addEventListener('keydown', (e) => {
+            keySequence.push(e.key);
+            if (keySequence.length > 4) keySequence.shift();
+            
+            if (keySequence.join('') === 'plus') {
+                plusUltra();
+                keySequence = [];
+            }
+        });
+    </script>
+</body>
+</html> 

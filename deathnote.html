@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Death Note - AnimeVerse</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --dn-primary: #1a1a1a;
+            --dn-secondary: #2d2d2d;
+            --dn-accent: #ff4444;
+            --dn-gold: #ffd700;
+            --dn-red: #cc0000;
+            --dn-white: #ffffff;
+            --dn-gradient: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 50%, #ff4444 100%);
+        }
+
+        body {
+            background: var(--dn-primary);
+            color: var(--dn-white);
+        }
+
+        .dn-hero {
+            background: var(--dn-gradient);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .dn-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="skull" width="30" height="30" patternUnits="userSpaceOnUse"><text x="15" y="20" text-anchor="middle" fill="white" opacity="0.1" font-size="20">💀</text></pattern></defs><rect width="100" height="100" fill="url(%23skull)"/></svg>');
+            animation: skullFloat 10s linear infinite;
+        }
+
+        @keyframes skullFloat {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0px); }
+        }
+
+        .light-character {
+            position: relative;
+            animation: lightFloat 6s ease-in-out infinite;
+        }
+
+        @keyframes lightFloat {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(2deg); }
+        }
+
+        .death-note-effect {
+            position: absolute;
+            width: 150px;
+            height: 150px;
+            background: radial-gradient(circle, rgba(255,68,68,0.3) 0%, transparent 70%);
+            border-radius: 50%;
+            animation: deathExpand 1s ease-out;
+            pointer-events: none;
+        }
+
+        @keyframes deathExpand {
+            0% { transform: scale(0); opacity: 1; }
+            100% { transform: scale(2); opacity: 0; }
+        }
+
+        .hero-title {
+            font-weight: 900;
+            text-shadow: 3px 3px 0px var(--dn-red);
+            color: var(--dn-white);
+        }
+
+        .death-button {
+            background: var(--dn-red);
+            color: var(--dn-white);
+            border: 3px solid var(--dn-gold);
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            transition: all 0.3s ease;
+        }
+
+        .death-button:hover {
+            background: var(--dn-gold);
+            color: var(--dn-primary);
+            transform: scale(1.1);
+            box-shadow: 0 10px 30px rgba(255, 68, 68, 0.4);
+        }
+
+        .floating-icons .floating-icon {
+            color: var(--dn-gold);
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
+        }
+
+        .shinigami-card {
+            background: linear-gradient(145deg, #1a1a1a, #2d2d2d);
+            color: white;
+            border: 2px solid var(--dn-gold);
+            transition: all 0.3s ease;
+        }
+
+        .shinigami-card:hover {
+            transform: translateY(-10px) scale(1.05);
+            box-shadow: 0 20px 40px rgba(255, 68, 68, 0.3);
+            border-color: var(--dn-red);
+        }
+
+        .character-rank {
+            background: var(--dn-gradient);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            font-weight: 700;
+            font-size: 0.9rem;
+        }
+
+        .trending, .genres, .about, .contact {
+            background: var(--dn-secondary);
+        }
+
+        .anime-card, .genre-card {
+            background: var(--dn-primary);
+            color: var(--dn-white);
+            border: 1px solid var(--dn-gold);
+        }
+
+        .anime-card:hover, .genre-card:hover {
+            border-color: var(--dn-red);
+        }
+
+        .section-title {
+            color: var(--dn-white);
+        }
+
+        .stat-item {
+            background: var(--dn-primary);
+            color: var(--dn-white);
+            border: 1px solid var(--dn-gold);
+        }
+
+        .contact-item {
+            background: var(--dn-primary);
+            color: var(--dn-white);
+        }
+
+        .form-group input,
+        .form-group textarea {
+            background: var(--dn-primary);
+            color: var(--dn-white);
+            border-color: var(--dn-gold);
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            border-color: var(--dn-red);
+        }
+    </style>
+</head>
+<body>
+    <!-- Floating Icons -->
+    <div class="floating-icons">
+        <div class="floating-icon" data-speed="2">💀</div>
+        <div class="floating-icon" data-speed="1.5">📖</div>
+        <div class="floating-icon" data-speed="3">⚡</div>
+        <div class="floating-icon" data-speed="2.5">🔥</div>
+        <div class="floating-icon" data-speed="1.8">🖊️</div>
+        <div class="floating-icon" data-speed="2.2">🎭</div>
+        <div class="floating-icon" data-speed="1.3">⚰️</div>
+        <div class="floating-icon" data-speed="2.8">🌟</div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <span class="logo-text">AnimeVerse</span>
+                <span class="logo-emoji">🎌</span>
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item"><a href="index.html" class="nav-link">Home 🏠</a></li>
+                <li class="nav-item"><a href="#characters" class="nav-link">Characters 👥</a></li>
+                <li class="nav-item"><a href="#shinigami" class="nav-link">Shinigami 💀</a></li>
+                <li class="nav-item"><a href="#rules" class="nav-link">Rules 📖</a></li>
+                <li class="nav-item"><a href="#gallery" class="nav-link">Gallery 🖼️</a></li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero dn-hero">
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1 class="hero-title">
+                    DEATH NOTE <span class="emoji">📖</span>
+                </h1>
+                <p class="hero-subtitle">
+                    A supernatural notebook that grants the power to kill anyone whose name is written in it. 
+                    Follow Light Yagami's descent into darkness as he becomes Kira! 
+                    <span class="emoji">💀</span>
+                </p>
+                <div class="hero-buttons">
+                    <button class="btn death-button" id="deathBtn">
+                        WRITE NAME <span class="emoji">🖊️</span>
+                    </button>
+                    <button class="btn btn-secondary">
+                        Watch Trailer <span class="emoji">🎬</span>
+                    </button>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="light-character">
+                    <div class="character-circle">
+                        <span class="character-emoji">👨‍🎓</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Characters Section -->
+    <section id="characters" class="trending">
+        <div class="container">
+            <h2 class="section-title">
+                Main Characters <span class="emoji">👥</span>
+            </h2>
+            <div class="anime-grid">
+                <div class="anime-card shinigami-card" data-aos="fade-up">
+                    <div class="anime-image">
+                        <span class="anime-emoji">👨‍🎓</span>
+                        <div class="character-rank">Kira</div>
+                    </div>
+                    <div class="anime-info">
+                        <h3>Light Yagami</h3>
+                        <p>Brilliant student who finds the Death Note and becomes Kira</p>
+                        <div class="rating">
+                            <span class="stars">⭐⭐⭐⭐⭐</span>
+                            <span class="score">9.8</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="anime-card shinigami-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="anime-image">
+                        <span class="anime-emoji">👨‍💼</span>
+                        <div class="character-rank">L</div>
+                    </div>
+                    <div class="anime-info">
+                        <h3>L (Lawliet)</h3>
+                        <p>World's greatest detective trying to catch Kira</p>
+                        <div class="rating">
+                            <span class="stars">⭐⭐⭐⭐⭐</span>
+                            <span class="score">9.7</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="anime-card shinigami-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="anime-image">
+                        <span class="anime-emoji">💀</span>
+                        <div class="character-rank">Shinigami</div>
+                    </div>
+                    <div class="anime-info">
+                        <h3>Ryuk</h3>
+                        <p>Shinigami who dropped the Death Note into the human world</p>
+                        <div class="rating">
+                            <span class="stars">⭐⭐⭐⭐⭐</span>
+                            <span class="score">9.5</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="anime-card shinigami-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="anime-image">
+                        <span class="anime-emoji">👨‍💻</span>
+                        <div class="character-rank">Near</div>
+                    </div>
+                    <div class="anime-info">
+                        <h3>Near (N)</h3>
+                        <p>L's successor in the investigation against Kira</p>
+                        <div class="rating">
+                            <span class="stars">⭐⭐⭐⭐⭐</span>
+                            <span class="score">9.3</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Shinigami Section -->
+    <section id="shinigami" class="genres">
+        <div class="container">
+            <h2 class="section-title">
+                Shinigami Realm <span class="emoji">💀</span>
+            </h2>
+            <div class="genre-grid">
+                <div class="genre-card" data-aos="zoom-in">
+                    <div class="genre-icon">💀</div>
+                    <h3>Ryuk</h3>
+                    <p>The Shinigami who started it all</p>
+                </div>
+                <div class="genre-card" data-aos="zoom-in" data-aos-delay="100">
+                    <div class="genre-icon">👻</div>
+                    <h3>Rem</h3>
+                    <p>Shinigami who protects Misa Amane</p>
+                </div>
+                <div class="genre-card" data-aos="zoom-in" data-aos-delay="200">
+                    <div class="genre-icon">🦴</div>
+                    <h3>Sidoh</h3>
+                    <p>Shinigami who lost his Death Note</p>
+                </div>
+                <div class="genre-card" data-aos="zoom-in" data-aos-delay="300">
+                    <div class="genre-icon">⚰️</div>
+                    <h3>Gelus</h3>
+                    <p>Shinigami who saved Misa's life</p>
+                </div>
+                <div class="genre-card" data-aos="zoom-in" data-aos-delay="400">
+                    <div class="genre-icon">🕯️</div>
+                    <h3>Arma</h3>
+                    <p>Shinigami with a unique appearance</p>
+                </div>
+                <div class="genre-card" data-aos="zoom-in" data-aos-delay="500">
+                    <div class="genre-icon">🌙</div>
+                    <h3>Midora</h3>
+                    <p>Shinigami with moon-like features</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Rules Section -->
+    <section id="rules" class="about">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-text" data-aos="fade-right">
+                    <h2 class="section-title">
+                        Death Note Rules <span class="emoji">📖</span>
+                    </h2>
+                    <p>
+                        The Death Note has specific rules that must be followed. The human whose name is written 
+                        in this note shall die. This note will not take effect unless the writer has the person's 
+                        face in mind when writing his/her name. <span class="emoji">💀</span>
+                    </p>
+                    <div class="features">
+                        <div class="feature">
+                            <span class="feature-icon">📝</span>
+                            <span>Write the name and cause of death</span>
+                        </div>
+                        <div class="feature">
+                            <span class="feature-icon">⏰</span>
+                            <span>Death occurs within 40 seconds</span>
+                        </div>
+                        <div class="feature">
+                            <span class="feature-icon">👁️</span>
+                            <span>Must see the person's face</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-visual" data-aos="fade-left">
+                    <div class="stats-container">
+                        <div class="stat-item">
+                            <div class="stat-number">40</div>
+                            <div class="stat-label">Seconds to Death</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">13</div>
+                            <div class="stat-label">Days to Transfer</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">∞</div>
+                            <div class="stat-label">Lifespan Cost</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="gallery" class="contact">
+        <div class="container">
+            <h2 class="section-title">
+                Iconic Moments <span class="emoji">🎬</span>
+            </h2>
+            <div class="anime-grid">
+                <div class="anime-card" data-aos="fade-up">
+                    <div class="anime-image">
+                        <span class="anime-emoji">📖</span>
+                    </div>
+                    <div class="anime-info">
+                        <h3>Finding the Death Note</h3>
+                        <p>Light discovers the supernatural notebook</p>
+                    </div>
+                </div>
+                <div class="anime-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="anime-image">
+                        <span class="anime-emoji">🎭</span>
+                    </div>
+                    <div class="anime-info">
+                        <h3>L vs Light</h3>
+                        <p>The ultimate battle of wits begins</p>
+                    </div>
+                </div>
+                <div class="anime-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="anime-image">
+                        <span class="anime-emoji">💀</span>
+                    </div>
+                    <div class="anime-info">
+                        <h3>Ryuk's Introduction</h3>
+                        <p>The Shinigami reveals himself to Light</p>
+                    </div>
+                </div>
+                <div class="anime-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="anime-image">
+                        <span class="anime-emoji">⚡</span>
+                    </div>
+                    <div class="anime-info">
+                        <h3>The Final Confrontation</h3>
+                        <p>Light's ultimate plan unfolds</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Death Note <span class="emoji">📖</span></h3>
+                    <p>The ultimate battle of justice vs evil</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-facebook"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>Characters</h4>
+                    <ul>
+                        <li><a href="#">Light Yagami</a></li>
+                        <li><a href="#">L (Lawliet)</a></li>
+                        <li><a href="#">Ryuk</a></li>
+                        <li><a href="#">Misa Amane</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Death Note Rules</h4>
+                    <ul>
+                        <li><a href="#">Basic Rules</a></li>
+                        <li><a href="#">Advanced Rules</a></li>
+                        <li><a href="#">Shinigami Rules</a></li>
+                        <li><a href="#">Transfer Rules</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Death Note. All rights reserved. <span class="emoji">💀</span></p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        // Death Note specific interactions
+        const deathBtn = document.getElementById('deathBtn');
+        
+        deathBtn.addEventListener('click', function(e) {
+            // Create death effect
+            const deathEffect = document.createElement('div');
+            deathEffect.className = 'death-note-effect';
+            deathEffect.style.left = (e.clientX - 75) + 'px';
+            deathEffect.style.top = (e.clientY - 75) + 'px';
+            document.body.appendChild(deathEffect);
+            
+            // Remove effect after animation
+            setTimeout(() => {
+                deathEffect.remove();
+            }, 1000);
+            
+            // Flash effect
+            document.body.style.animation = 'flash 0.3s ease-in-out';
+            setTimeout(() => {
+                document.body.style.animation = '';
+            }, 300);
+        });
+
+        // Add flash animation
+        const flashStyle = document.createElement('style');
+        flashStyle.textContent = `
+            @keyframes flash {
+                0%, 100% { filter: brightness(1); }
+                50% { filter: brightness(1.5); }
+            }
+        `;
+        document.head.appendChild(flashStyle);
+
+        // Random death effects
+        setInterval(() => {
+            if (Math.random() < 0.05) {
+                const deathEffect = document.createElement('div');
+                deathEffect.className = 'death-note-effect';
+                deathEffect.style.left = Math.random() * window.innerWidth + 'px';
+                deathEffect.style.top = Math.random() * window.innerHeight + 'px';
+                document.body.appendChild(deathEffect);
+                
+                setTimeout(() => {
+                    deathEffect.remove();
+                }, 1000);
+            }
+        }, 3000);
+
+        // Typing effect for character names
+        const characterNames = document.querySelectorAll('.anime-info h3');
+        characterNames.forEach(name => {
+            name.addEventListener('mouseenter', function() {
+                this.style.color = '#ff4444';
+                this.style.textShadow = '0 0 10px #ff4444';
+            });
+            
+            name.addEventListener('mouseleave', function() {
+                this.style.color = '';
+                this.style.textShadow = '';
+            });
+        });
+    </script>
+</body>
+</html> 

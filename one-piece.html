@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>One Piece - AnimeVerse</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --op-primary: #ff6b35;
+            --op-secondary: #4a90e2;
+            --op-accent: #f39c12;
+            --op-red: #e74c3c;
+            --op-green: #27ae60;
+            --op-gold: #f1c40f;
+            --op-gradient: linear-gradient(135deg, #ff6b35 0%, #4a90e2 50%, #f39c12 100%);
+        }
+
+        .op-hero {
+            background: var(--op-gradient);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .op-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="pirate" width="25" height="25" patternUnits="userSpaceOnUse"><text x="12.5" y="20" text-anchor="middle" fill="white" opacity="0.1" font-size="20">🏴‍☠️</text></pattern></defs><rect width="100" height="100" fill="url(%23pirate)"/></svg>');
+            animation: pirateFloat 20s linear infinite;
+        }
+
+        @keyframes pirateFloat {
+            0% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-30px) rotate(180deg); }
+            100% { transform: translateY(0px) rotate(360deg); }
+        }
+
+        .luffy-character {
+            position: relative;
+            animation: luffyFloat 5s ease-in-out infinite;
+        }
+
+        @keyframes luffyFloat {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-30px) rotate(5deg); }
+        }
+
+        .devil-fruit-effect {
+            position: absolute;
+            width: 120px;
+            height: 120px;
+            background: radial-gradient(circle, rgba(255,107,53,0.4) 0%, rgba(74,144,226,0.3) 50%, transparent 70%);
+            border-radius: 50%;
+            animation: devilFruitExpand 0.8s ease-out;
+            pointer-events: none;
+        }
+
+        @keyframes devilFruitExpand {
+            0% { transform: scale(0) rotate(0deg); opacity: 1; }
+            100% { transform: scale(2.5) rotate(360deg); opacity: 0; }
+        }
+
+        .hero-title {
+            font-weight: 900;
+            text-shadow: 3px 3px 0px var(--op-red);
+            color: white;
+        }
+
+        .pirate-button {
+            background: var(--op-red);
+            color: white;
+            border: 3px solid var(--op-gold);
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            transition: all 0.3s ease;
+        }
+
+        .pirate-button:hover {
+            background: var(--op-gold);
+            color: var(--op-red);
+            transform: scale(1.1) rotate(-2deg);
+            box-shadow: 0 10px 30px rgba(231, 76, 60, 0.4);
+        }
+
+        .floating-icons .floating-icon {
+            color: var(--op-gold);
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .pirate-card {
+            background: linear-gradient(145deg, #2c3e50, #34495e);
+            color: white;
+            border: 2px solid var(--op-gold);
+            transition: all 0.3s ease;
+        }
+
+        .pirate-card:hover {
+            transform: translateY(-10px) scale(1.05);
+            box-shadow: 0 20px 40px rgba(255, 107, 53, 0.3);
+            border-color: var(--op-primary);
+        }
+
+        .bounty-rank {
+            background: var(--op-gradient);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            font-weight: 700;
+            font-size: 0.9rem;
+        }
+
+        .trending {
+            background: #ecf0f1;
+        }
+
+        .genres {
+            background: #bdc3c7;
+        }
+
+        .about {
+            background: #ecf0f1;
+        }
+
+        .contact {
+            background: #bdc3c7;
+        }
+
+        .section-title {
+            color: #2c3e50;
+        }
+
+        .anime-card, .genre-card {
+            background: white;
+            color: #2c3e50;
+            border: 1px solid var(--op-gold);
+        }
+
+        .anime-card:hover, .genre-card:hover {
+            border-color: var(--op-primary);
+        }
+
+        .stat-item {
+            background: white;
+            color: #2c3e50;
+            border: 1px solid var(--op-gold);
+        }
+
+        .contact-item {
+            background: white;
+            color: #2c3e50;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            background: white;
+            color: #2c3e50;
+            border-color: var(--op-gold);
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            border-color: var(--op-primary);
+        }
+    </style>
+</head>
+<body>
+    <!-- Floating Icons -->
+    <div class="floating-icons">
+        <div class="floating-icon" data-speed="2">🏴‍☠️</div>
+        <div class="floating-icon" data-speed="1.5">⚓</div>
+        <div class="floating-icon" data-speed="3">🌊</div>
+        <div class="floating-icon" data-speed="2.5">🗺️</div>
+        <div class="floating-icon" data-speed="1.8">💎</div>
+        <div class="floating-icon" data-speed="2.2">⚔️</div>
+        <div class="floating-icon" data-speed="1.3">🍎</div>
+        <div class="floating-icon" data-speed="2.8">🌟</div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <span class="logo-text">AnimeVerse</span>
+                <span class="logo-emoji">🎌</span>
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item"><a href="index.html" class="nav-link">Home 🏠</a></li>
+                <li class="nav-item"><a href="#pirates" class="nav-link">Pirates 🏴‍☠️</a></li>
+                <li class="nav-item"><a href="#devil-fruits" class="nav-link">Devil Fruits 🍎</a></li>
+                <li class="nav-item"><a href="#seas" class="nav-link">Seas 🌊</a></li>
+                <li class="nav-item"><a href="#gallery" class="nav-link">Gallery 🖼️</a></li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero op-hero">
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1 class="hero-title">
+                    ONE PIECE <span class="emoji">🏴‍☠️</span>
+                </h1>
+                <p class="hero-subtitle">
+                    Set sail with Monkey D. Luffy and the Straw Hat Pirates on their epic journey 
+                    to find the legendary One Piece and become the Pirate King! 
+                    <span class="emoji">⚓</span>
+                </p>
+                <div class="hero-buttons">
+                    <button class="btn pirate-button" id="devilFruitBtn">
+                        GUM GUM PISTOL <span class="emoji">👊</span>
+                    </button>
+                    <button class="btn btn-secondary">
+                        Watch Trailer <span class="emoji">🎬</span>
+                    </button>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="luffy-character">
+                    <div class="character-circle">
+                        <span class="character-emoji">👨‍🦰</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pirates Section -->
+    <section id="pirates" class="trending">
+        <div class="container">
+            <h2 class="section-title">
+                Straw Hat Pirates <span class="emoji">🏴‍☠️</span>
+            </h2>
+            <div class="anime-grid">
+                <div class="anime-card pirate-card" data-aos="fade-up">
+                    <div class="anime-image">
+                        <span class="anime-emoji">👨‍🦰</span>
+                        <div class="bounty-rank">3B Berries</div>
+                    </div>
+                    <div class="anime-info">
+                        <h3>Monkey D. Luffy</h3>
+                        <p>Captain with Gum-Gum Devil Fruit powers</p>
+                        <div class="rating">
+                            <span class="stars">⭐⭐⭐⭐⭐</span>
+                            <span class="score">9.9</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="anime-card pirate-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="anime-image">
+                        <span class="anime-emoji">👨‍🦱</span>
+                        <div class="bounty-rank">1.1B Berries</div>
+                    </div>
+                    <div class="anime-info">
+                        <h3>Roronoa Zoro</h3>
+                        <p>Swordsman and first mate</p>
+                        <div class="rating">
+                            <span class="stars">⭐⭐⭐⭐⭐</span>
+                            <span class="score">9.8</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="anime-card pirate-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="anime-image">
+                        <span class="anime-emoji">👩‍🦰</span>
+                        <div class="bounty-rank">366M Berries</div>
+                    </div>
+                    <div class="anime-info">
+                        <h3>Nami</h3>
+                        <p>Navigator and weather expert</p>
+                        <div class="rating">
+                            <span class="stars">⭐⭐⭐⭐⭐</span>
+                            <span class="score">9.6</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="anime-card pirate-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="anime-image">
+                        <span class="anime-emoji">👨‍🦲</span>
+                        <div class="bounty-rank">394M Berries</div>
+                    </div>
+                    <div class="anime-info">
+                        <h3>Usopp</h3>
+                        <p>Sniper and inventor</p>
+                        <div class="rating">
+                            <span class="stars">⭐⭐⭐⭐⭐</span>
+                            <span class="score">9.5</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Devil Fruits Section -->
+    <section id="devil-fruits" class="genres">
+        <div class="container">
+            <h2 class="section-title">
+                Devil Fruits <span class="emoji">🍎</span>
+            </h2>
+            <div class="genre-grid">
+                <div class="genre-card" data-aos="zoom-in">
+                    <div class="genre-icon">🍎</div>
+                    <h3>Gum-Gum Fruit</h3>
+                    <p>Luffy's rubber powers</p>
+                </div>
+                <div class="genre-card" data-aos="zoom-in" data-aos-delay="100">
+                    <div class="genre-icon">🍊</div>
+                    <h3>Flame-Flame Fruit</h3>
+                    <p>Ace's fire powers</p>
+                </div>
+                <div class="genre-card" data-aos="zoom-in" data-aos-delay="200">
+                    <div class="genre-icon">🍇</div>
+                    <h3>Dark-Dark Fruit</h3>
+                    <p>Blackbeard's darkness powers</p>
+                </div>
+                <div class="genre-card" data-aos="zoom-in" data-aos-delay="300">
+                    <div class="genre-icon">🍓</div>
+                    <h3>Ice-Ice Fruit</h3>
+                    <p>Aokiji's ice powers</p>
+                </div>
+                <div class="genre-card" data-aos="zoom-in" data-aos-delay="400">
+                    <div class="genre-icon">🍑</div>
+                    <h3>Light-Light Fruit</h3>
+                    <p>Kizaru's light powers</p>
+                </div>
+                <div class="genre-card" data-aos="zoom-in" data-aos-delay="500">
+                    <div class="genre-icon">🍉</div>
+                    <h3>Magma-Magma Fruit</h3>
+                    <p>Akainu's magma powers</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Seas Section -->
+    <section id="seas" class="about">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-text" data-aos="fade-right">
+                    <h2 class="section-title">
+                        The Four Seas <span class="emoji">🌊</span>
+                    </h2>
+                    <p>
+                        The world of One Piece is divided into four seas: East Blue, West Blue, 
+                        North Blue, and South Blue. The Grand Line separates them, and the New World 
+                        lies beyond the Red Line. <span class="emoji">🗺️</span>
+                    </p>
+                    <div class="features">
+                        <div class="feature">
+                            <span class="feature-icon">🌅</span>
+                            <span>East Blue</span>
+                        </div>
+                        <div class="feature">
+                            <span class="feature-icon">🌇</span>
+                            <span>West Blue</span>
+                        </div>
+                        <div class="feature">
+                            <span class="feature-icon">🌆</span>
+                            <span>North Blue</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-visual" data-aos="fade-left">
+                    <div class="stats-container">
+                        <div class="stat-item">
+                            <div class="stat-number">1000+</div>
+                            <div class="stat-label">Episodes</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">4</div>
+                            <div class="stat-label">Seas</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">∞</div>
+                            <div class="stat-label">Adventures</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="gallery" class="contact">
+        <div class="container">
+            <h2 class="section-title">
+                Epic Adventures <span class="emoji">🗺️</span>
+            </h2>
+            <div class="anime-grid">
+                <div class="anime-card" data-aos="fade-up">
+                    <div class="anime-image">
+                        <span class="anime-emoji">👊</span>
+                    </div>
+                    <div class="anime-info">
+                        <h3>Gum-Gum Pistol</h3>
+                        <p>Luffy's signature attack</p>
+                    </div>
+                </div>
+                <div class="anime-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="anime-image">
+                        <span class="anime-emoji">⚔️</span>
+                    </div>
+                    <div class="anime-info">
+                        <h3>Three Sword Style</h3>
+                        <p>Zoro's unique fighting style</p>
+                    </div>
+                </div>
+                <div class="anime-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="anime-image">
+                        <span class="anime-emoji">🌊</span>
+                    </div>
+                    <div class="anime-info">
+                        <h3>Grand Line</h3>
+                        <p>The most dangerous sea route</p>
+                    </div>
+                </div>
+                <div class="anime-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="anime-image">
+                        <span class="anime-emoji">💎</span>
+                    </div>
+                    <div class="anime-info">
+                        <h3>One Piece</h3>
+                        <p>The ultimate treasure</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>One Piece <span class="emoji">🏴‍☠️</span></h3>
+                    <p>The greatest treasure in the world</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-facebook"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>Pirate Crews</h4>
+                    <ul>
+                        <li><a href="#">Straw Hat Pirates</a></li>
+                        <li><a href="#">Whitebeard Pirates</a></li>
+                        <li><a href="#">Red Hair Pirates</a></li>
+                        <li><a href="#">Big Mom Pirates</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Devil Fruit Types</h4>
+                    <ul>
+                        <li><a href="#">Paramecia</a></li>
+                        <li><a href="#">Logia</a></li>
+                        <li><a href="#">Zoan</a></li>
+                        <li><a href="#">Ancient Zoan</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 One Piece. All rights reserved. <span class="emoji">🏴‍☠️</span></p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        // One Piece specific interactions
+        const devilFruitBtn = document.getElementById('devilFruitBtn');
+        
+        devilFruitBtn.addEventListener('click', function(e) {
+            // Create devil fruit effect
+            const devilFruitEffect = document.createElement('div');
+            devilFruitEffect.className = 'devil-fruit-effect';
+            devilFruitEffect.style.left = (e.clientX - 60) + 'px';
+            devilFruitEffect.style.top = (e.clientY - 60) + 'px';
+            document.body.appendChild(devilFruitEffect);
+            
+            // Remove effect after animation
+            setTimeout(() => {
+                devilFruitEffect.remove();
+            }, 800);
+            
+            // Stretch effect
+            document.body.style.animation = 'stretch 0.8s ease-in-out';
+            setTimeout(() => {
+                document.body.style.animation = '';
+            }, 800);
+        });
+
+        // Add stretch animation
+        const stretchStyle = document.createElement('style');
+        stretchStyle.textContent = `
+            @keyframes stretch {
+                0%, 100% { transform: scaleX(1); }
+                50% { transform: scaleX(1.05); }
+            }
+        `;
+        document.head.appendChild(stretchStyle);
+
+        // Random devil fruit effects
+        setInterval(() => {
+            if (Math.random() < 0.05) {
+                const devilFruitEffect = document.createElement('div');
+                devilFruitEffect.className = 'devil-fruit-effect';
+                devilFruitEffect.style.left = Math.random() * window.innerWidth + 'px';
+                devilFruitEffect.style.top = Math.random() * window.innerHeight + 'px';
+                document.body.appendChild(devilFruitEffect);
+                
+                setTimeout(() => {
+                    devilFruitEffect.remove();
+                }, 800);
+            }
+        }, 3000);
+
+        // Pirate transformation effect
+        const pirateCards = document.querySelectorAll('.pirate-card');
+        pirateCards.forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-15px) scale(1.05) rotate(3deg)';
+                this.style.boxShadow = '0 25px 50px rgba(255, 107, 53, 0.4)';
+                this.style.borderColor = 'var(--op-primary)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = '';
+                this.style.boxShadow = '';
+                this.style.borderColor = '';
+            });
+        });
+
+        // Pirate King effect
+        const pirateKing = () => {
+            const notification = document.createElement('div');
+            notification.style.cssText = `
+                position: fixed;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                background: var(--op-gradient);
+                color: white;
+                padding: 2rem;
+                border-radius: 20px;
+                font-size: 2rem;
+                font-weight: 900;
+                z-index: 10000;
+                animation: pirateKingAnim 2s ease-in-out;
+            `;
+            notification.textContent = 'PIRATE KING! 🏴‍☠️';
+            document.body.appendChild(notification);
+            
+            setTimeout(() => {
+                notification.remove();
+            }, 2000);
+        };
+
+        // Add pirate king animation
+        const pirateKingStyle = document.createElement('style');
+        pirateKingStyle.textContent = `
+            @keyframes pirateKingAnim {
+                0% { transform: translate(-50%, -50%) scale(0) rotate(0deg); opacity: 0; }
+                50% { transform: translate(-50%, -50%) scale(1.2) rotate(180deg); opacity: 1; }
+                100% { transform: translate(-50%, -50%) scale(1) rotate(360deg); opacity: 0; }
+            }
+        `;
+        document.head.appendChild(pirateKingStyle);
+
+        // Trigger pirate king effect on specific key combination
+        let keySequence = [];
+        document.addEventListener('keydown', (e) => {
+            keySequence.push(e.key);
+            if (keySequence.length > 5) keySequence.shift();
+            
+            if (keySequence.join('') === 'king') {
+                pirateKing();
+                keySequence = [];
+            }
+        });
+    </script>
+</body>
+</html> 

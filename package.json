@@ -1,0 +1,44 @@
+{
+  "name": "animeverse",
+  "version": "1.0.0",
+  "description": "A modern anime website with beautiful animations and floating icons",
+  "main": "index.html",
+  "scripts": {
+    "start": "live-server --port=3000",
+    "build": "echo 'Build completed'",
+    "test": "echo 'No tests specified'",
+    "lint": "echo 'No linter configured'",
+    "dev": "live-server --port=3000 --open=/index.html"
+  },
+  "keywords": [
+    "anime",
+    "website",
+    "html",
+    "css",
+    "javascript",
+    "animations",
+    "responsive",
+    "modern"
+  ],
+  "author": "AnimeVerse Team",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/animeverse.git"
+  },
+  "bugs": {
+    "url": "https://github.com/yourusername/animeverse/issues"
+  },
+  "homepage": "https://github.com/yourusername/animeverse#readme",
+  "devDependencies": {
+    "live-server": "^1.2.2"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not dead"
+  ]
+} 

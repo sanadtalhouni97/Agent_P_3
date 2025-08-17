@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>One Punch Man - AnimeVerse</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --opm-primary: #ff6b35;
+            --opm-secondary: #f7931e;
+            --opm-accent: #ffd23f;
+            --opm-dark: #2c1810;
+            --opm-light: #fff8e1;
+            --opm-gradient: linear-gradient(135deg, #ff6b35 0%, #f7931e 50%, #ffd23f 100%);
+        }
+
+        .opm-hero {
+            background: var(--opm-gradient);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .opm-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="punch" width="20" height="20" patternUnits="userSpaceOnUse"><circle cx="10" cy="10" r="2" fill="white" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23punch)"/></svg>');
+            animation: punchMove 3s linear infinite;
+        }
+
+        @keyframes punchMove {
+            0% { transform: translateX(-100px); }
+            100% { transform: translateX(100vw); }
+        }
+
+        .saitama-character {
+            position: relative;
+            animation: saitamaFloat 4s ease-in-out infinite;
+        }
+
+        @keyframes saitamaFloat {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-30px) rotate(5deg); }
+        }
+
+        .punch-effect {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            background: radial-gradient(circle, rgba(255,255,255,0.8) 0%, transparent 70%);
+            border-radius: 50%;
+            animation: punchExpand 0.6s ease-out;
+            pointer-events: none;
+        }
+
+        @keyframes punchExpand {
+            0% { transform: scale(0); opacity: 1; }
+            100% { transform: scale(3); opacity: 0; }
+        }
+
+        .hero-title {
+            font-weight: 900;
+            text-shadow: 3px 3px 0px var(--opm-dark);
+        }
+
+        .punch-button {
+            background: var(--opm-dark);
+            color: var(--opm-accent);
+            border: 3px solid var(--opm-accent);
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            transition: all 0.3s ease;
+        }
+
+        .punch-button:hover {
+            background: var(--opm-accent);
+            color: var(--opm-dark);
+            transform: scale(1.1) rotate(-2deg);
+            box-shadow: 0 10px 30px rgba(255, 107, 53, 0.4);
+        }
+
+        .floating-icons .floating-icon {
+            color: var(--opm-accent);
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .power-level {
+            background: var(--opm-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 900;
+            font-size: 4rem;
+        }
+
+        .villain-card {
+            background: linear-gradient(145deg, #2c1810, #4a2c1a);
+            color: white;
+            border: 2px solid var(--opm-accent);
+            transition: all 0.3s ease;
+        }
+
+        .villain-card:hover {
+            transform: translateY(-10px) scale(1.05);
+            box-shadow: 0 20px 40px rgba(255, 107, 53, 0.3);
+            border-color: var(--opm-primary);
+        }
+
+        .hero-rank {
+            background: var(--opm-gradient);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            font-weight: 700;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- Floating Icons -->
+    <div class="floating-icons">
+        <div class="floating-icon" data-speed="2">👊</div>
+        <div class="floating-icon" data-speed="1.5">💪</div>
+        <div class="floating-icon" data-speed="3">⚡</div>
+        <div class="floating-icon" data-speed="2.5">🔥</div>
+        <div class="floating-icon" data-speed="1.8">💥</div>
+        <div class="floating-icon" data-speed="2.2">🎯</div>
+        <div class="floating-icon" data-speed="1.3">🏆</div>
+        <div class="floating-icon" data-speed="2.8">🌟</div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <span class="logo-text">AnimeVerse</span>
+                <span class="logo-emoji">🎌</span>
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item"><a href="index.html" class="nav-link">Home 🏠</a></li>
+                <li class="nav-item"><a href="#heroes" class="nav-link">Heroes 🦸</a></li>
+                <li class="nav-item"><a href="#villains" class="nav-link">Villains 👹</a></li>
+                <li class="nav-item"><a href="#powers" class="nav-link">Powers ⚡</a></li>
+                <li class="nav-item"><a href="#gallery" class="nav-link">Gallery 🖼️</a></li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero opm-hero">
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1 class="hero-title">
+                    ONE PUNCH MAN <span class="emoji">👊</span>
+                </h1>
+                <p class="hero-subtitle">
+                    One punch is all it takes! Follow Saitama's journey as the strongest hero who can defeat any enemy with a single punch! 
+                    <span class="emoji">💪</span>
+                </p>
+                <div class="power-level">POWER LEVEL: ∞</div>
+                <div class="hero-buttons">
+                    <button class="btn punch-button" id="punchBtn">
+                        SERIOUS PUNCH <span class="emoji">💥</span>
+                    </button>
+                    <button class="btn btn-secondary">
+                        Watch Trailer <span class="emoji">🎬</span>
+                    </button>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="saitama-character">
+                    <div class="character-circle">
+                        <span class="character-emoji">👨‍🦲</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Heroes Section -->
+    <section id="heroes" class="trending">
+        <div class="container">
+            <h2 class="section-title">
+                Hero Association <span class="emoji">🦸</span>
+            </h2>
+            <div class="anime-grid">
+                <div class="anime-card villain-card" data-aos="fade-up">
+                    <div class="anime-image">
+                        <span class="anime-emoji">👨‍🦲</span>
+                        <div class="hero-rank">S-Class Rank 1</div>
+                    </div>
+                    <div class="anime-info">
+                        <h3>Saitama (Caped Baldy)</h3>
+                        <p>The strongest hero who can defeat any enemy with one punch</p>
+                        <div class="rating">
+                            <span class="stars">⭐⭐⭐⭐⭐</span>
+                            <span class="score">∞</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="anime-card villain-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="anime-image">
+                        <span class="anime-emoji">🤖</span>
+                        <div class="hero-rank">S-Class Rank 2</div>
+                    </div>
+                    <div class="anime-info">
+                        <h3>Genos</h3>
+                        <p>Cyborg hero and Saitama's disciple</p>
+                        <div class="rating">
+                            <span class="stars">⭐⭐⭐⭐⭐</span>
+                            <span class="score">9.5</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="anime-card villain-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="anime-image">
+                        <span class="anime-emoji">👨‍🦱</span>
+                        <div class="hero-rank">S-Class Rank 3</div>
+                    </div>
+                    <div class="anime-info">
+                        <h3>Bang (Silver Fang)</h3>
+                        <p>Martial arts master and Water Stream Rock Smashing Fist user</p>
+                        <div class="rating">
+                            <span class="stars">⭐⭐⭐⭐⭐</span>
+                            <span class="score">9.3</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="anime-card villain-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="anime-image">
+                        <span class="anime-emoji">👨‍🦰</span>
+                        <div class="hero-rank">S-Class Rank 4</div>
+                    </div>
+                    <div class="anime-info">
+                        <h3>Atomic Samurai</h3>
+                        <p>Master swordsman with incredible speed and precision</p>
+                        <div class="rating">
+                            <span class="stars">⭐⭐⭐⭐⭐</span>
+                            <span class="score">9.1</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Villains Section -->
+    <section id="villains" class="genres">
+        <div class="container">
+            <h2 class="section-title">
+                Monsters & Villains <span class="emoji">👹</span>
+            </h2>
+            <div class="genre-grid">
+                <div class="genre-card" data-aos="zoom-in">
+                    <div class="genre-icon">🦀</div>
+                    <h3>Crab Monster</h3>
+                    <p>Giant crab that terrorized City A</p>
+                </div>
+                <div class="genre-card" data-aos="zoom-in" data-aos-delay="100">
+                    <div class="genre-icon">🦎</div>
+                    <h3>Lizard Man</h3>
+                    <p>Reptilian monster with regeneration abilities</p>
+                </div>
+                <div class="genre-card" data-aos="zoom-in" data-aos-delay="200">
+                    <div class="genre-icon">🧠</div>
+                    <h3>Boros</h3>
+                    <p>Alien conqueror seeking worthy opponents</p>
+                </div>
+                <div class="genre-card" data-aos="zoom-in" data-aos-delay="300">
+                    <div class="genre-icon">🕷️</div>
+                    <h3>Spider Monster</h3>
+                    <p>Giant spider that captured heroes</p>
+                </div>
+                <div class="genre-card" data-aos="zoom-in" data-aos-delay="400">
+                    <div class="genre-icon">🐙</div>
+                    <h3>Octopus Monster</h3>
+                    <p>Sea creature with multiple tentacles</p>
+                </div>
+                <div class="genre-card" data-aos="zoom-in" data-aos-delay="500">
+                    <div class="genre-icon">👻</div>
+                    <h3>Ghost Monster</h3>
+                    <p>Ethereal being with supernatural powers</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Powers Section -->
+    <section id="powers" class="about">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-text" data-aos="fade-right">
+                    <h2 class="section-title">
+                        Saitama's Training <span class="emoji">💪</span>
+                    </h2>
+                    <p>
+                        Saitama became the strongest hero through a simple but grueling training regimen: 
+                        100 push-ups, 100 sit-ups, 100 squats, and a 10km run every single day for 3 years! 
+                        His dedication and determination led to his incredible power. <span class="emoji">🔥</span>
+                    </p>
+                    <div class="features">
+                        <div class="feature">
+                            <span class="feature-icon">💪</span>
+                            <span>Unlimited Strength</span>
+                        </div>
+                        <div class="feature">
+                            <span class="feature-icon">⚡</span>
+                            <span>Infinite Speed</span>
+                        </div>
+                        <div class="feature">
+                            <span class="feature-icon">🛡️</span>
+                            <span>Invincible Body</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-visual" data-aos="fade-left">
+                    <div class="stats-container">
+                        <div class="stat-item">
+                            <div class="stat-number">∞</div>
+                            <div class="stat-label">Power Level</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">1</div>
+                            <div class="stat-label">Punches Needed</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">3</div>
+                            <div class="stat-label">Years Training</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="gallery" class="contact">
+        <div class="container">
+            <h2 class="section-title">
+                Epic Moments <span class="emoji">🎬</span>
+            </h2>
+            <div class="anime-grid">
+                <div class="anime-card" data-aos="fade-up">
+                    <div class="anime-image">
+                        <span class="anime-emoji">💥</span>
+                    </div>
+                    <div class="anime-info">
+                        <h3>Serious Punch</h3>
+                        <p>Saitama's ultimate attack against Boros</p>
+                    </div>
+                </div>
+                <div class="anime-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="anime-image">
+                        <span class="anime-emoji">🌪️</span>
+                    </div>
+                    <div class="anime-info">
+                        <h3>Consecutive Normal Punches</h3>
+                        <p>Rapid-fire punch combination</p>
+                    </div>
+                </div>
+                <div class="anime-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="anime-image">
+                        <span class="anime-emoji">🚀</span>
+                    </div>
+                    <div class="anime-info">
+                        <h3>Moon Jump</h3>
+                        <p>Saitama jumps from the moon back to Earth</p>
+                    </div>
+                </div>
+                <div class="anime-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="anime-image">
+                        <span class="anime-emoji">⚡</span>
+                    </div>
+                    <div class="anime-info">
+                        <h3>Serious Side Hops</h3>
+                        <p>Ultimate evasion technique</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>One Punch Man <span class="emoji">👊</span></h3>
+                    <p>The strongest hero in the universe</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-facebook"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>Hero Classes</h4>
+                    <ul>
+                        <li><a href="#">S-Class Heroes</a></li>
+                        <li><a href="#">A-Class Heroes</a></li>
+                        <li><a href="#">B-Class Heroes</a></li>
+                        <li><a href="#">C-Class Heroes</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Monster Threat Levels</h4>
+                    <ul>
+                        <li><a href="#">Wolf Level</a></li>
+                        <li><a href="#">Tiger Level</a></li>
+                        <li><a href="#">Demon Level</a></li>
+                        <li><a href="#">Dragon Level</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 One Punch Man. All rights reserved. <span class="emoji">👊</span></p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        // One Punch Man specific interactions
+        const punchBtn = document.getElementById('punchBtn');
+        
+        punchBtn.addEventListener('click', function(e) {
+            // Create punch effect
+            const punchEffect = document.createElement('div');
+            punchEffect.className = 'punch-effect';
+            punchEffect.style.left = (e.clientX - 50) + 'px';
+            punchEffect.style.top = (e.clientY - 50) + 'px';
+            document.body.appendChild(punchEffect);
+            
+            // Remove effect after animation
+            setTimeout(() => {
+                punchEffect.remove();
+            }, 600);
+            
+            // Shake the page
+            document.body.style.animation = 'shake 0.5s ease-in-out';
+            setTimeout(() => {
+                document.body.style.animation = '';
+            }, 500);
+        });
+
+        // Add shake animation
+        const shakeStyle = document.createElement('style');
+        shakeStyle.textContent = `
+            @keyframes shake {
+                0%, 100% { transform: translateX(0); }
+                25% { transform: translateX(-10px); }
+                75% { transform: translateX(10px); }
+            }
+        `;
+        document.head.appendChild(shakeStyle);
+
+        // Random punch effects
+        setInterval(() => {
+            if (Math.random() < 0.1) {
+                const punchEffect = document.createElement('div');
+                punchEffect.className = 'punch-effect';
+                punchEffect.style.left = Math.random() * window.innerWidth + 'px';
+                punchEffect.style.top = Math.random() * window.innerHeight + 'px';
+                document.body.appendChild(punchEffect);
+                
+                setTimeout(() => {
+                    punchEffect.remove();
+                }, 600);
+            }
+        }, 2000);
+    </script>
+</body>
+</html> 

@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Demon Slayer - AnimeVerse</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --ds-primary: #e74c3c;
+            --ds-secondary: #2c3e50;
+            --ds-accent: #f39c12;
+            --ds-blue: #3498db;
+            --ds-green: #27ae60;
+            --ds-purple: #9b59b6;
+            --ds-gradient: linear-gradient(135deg, #e74c3c 0%, #2c3e50 50%, #f39c12 100%);
+        }
+
+        .ds-hero {
+            background: var(--ds-gradient);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .ds-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="sword" width="20" height="20" patternUnits="userSpaceOnUse"><text x="10" y="15" text-anchor="middle" fill="white" opacity="0.1" font-size="15">🗡️</text></pattern></defs><rect width="100" height="100" fill="url(%23sword)"/></svg>');
+            animation: swordFloat 12s linear infinite;
+        }
+
+        @keyframes swordFloat {
+            0% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-15px) rotate(180deg); }
+            100% { transform: translateY(0px) rotate(360deg); }
+        }
+
+        .tanjiro-character {
+            position: relative;
+            animation: tanjiroFloat 5s ease-in-out infinite;
+        }
+
+        @keyframes tanjiroFloat {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(2deg); }
+        }
+
+        .sword-effect {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            background: radial-gradient(circle, rgba(231,76,60,0.4) 0%, rgba(52,152,219,0.3) 50%, transparent 70%);
+            border-radius: 50%;
+            animation: swordExpand 0.7s ease-out;
+            pointer-events: none;
+        }
+
+        @keyframes swordExpand {
+            0% { transform: scale(0) rotate(0deg); opacity: 1; }
+            100% { transform: scale(2) rotate(360deg); opacity: 0; }
+        }
+
+        .hero-title {
+            font-weight: 900;
+            text-shadow: 3px 3px 0px var(--ds-secondary);
+            color: white;
+        }
+
+        .sword-button {
+            background: var(--ds-blue);
+            color: white;
+            border: 3px solid var(--ds-accent);
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            transition: all 0.3s ease;
+        }
+
+        .sword-button:hover {
+            background: var(--ds-accent);
+            color: var(--ds-blue);
+            transform: scale(1.1) rotate(-1deg);
+            box-shadow: 0 10px 30px rgba(52, 152, 219, 0.4);
+        }
+
+        .floating-icons .floating-icon {
+            color: var(--ds-accent);
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .slayer-card {
+            background: linear-gradient(145deg, #2c3e50, #34495e);
+            color: white;
+            border: 2px solid var(--ds-accent);
+            transition: all 0.3s ease;
+        }
+
+        .slayer-card:hover {
+            transform: translateY(-10px) scale(1.05);
+            box-shadow: 0 20px 40px rgba(231, 76, 60, 0.3);
+            border-color: var(--ds-primary);
+        }
+
+        .slayer-rank {
+            background: var(--ds-gradient);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            font-weight: 700;
+            font-size: 0.9rem;
+        }
+
+        .trending {
+            background: #ecf0f1;
+        }
+
+        .genres {
+            background: #bdc3c7;
+        }
+
+        .about {
+            background: #ecf0f1;
+        }
+
+        .contact {
+            background: #bdc3c7;
+        }
+
+        .section-title {
+            color: #2c3e50;
+        }
+
+        .anime-card, .genre-card {
+            background: white;
+            color: #2c3e50;
+            border: 1px solid var(--ds-accent);
+        }
+
+        .anime-card:hover, .genre-card:hover {
+            border-color: var(--ds-primary);
+        }
+
+        .stat-item {
+            background: white;
+            color: #2c3e50;
+            border: 1px solid var(--ds-accent);
+        }
+
+        .contact-item {
+            background: white;
+            color: #2c3e50;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            background: white;
+            color: #2c3e50;
+            border-color: var(--ds-accent);
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            border-color: var(--ds-primary);
+        }
+    </style>
+</head>
+<body>
+    <!-- Floating Icons -->
+    <div class="floating-icons">
+        <div class="floating-icon" data-speed="2">🗡️</div>
+        <div class="floating-icon" data-speed="1.5">⚔️</div>
+        <div class="floating-icon" data-speed="3">🔥</div>
+        <div class="floating-icon" data-speed="2.5">💧</div>
+        <div class="floating-icon" data-speed="1.8">🌪️</div>
+        <div class="floating-icon" data-speed="2.2">⚡</div>
+        <div class="floating-icon" data-speed="1.3">👹</div>
+        <div class="floating-icon" data-speed="2.8">🌟</div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <span class="logo-text">AnimeVerse</span>
+                <span class="logo-emoji">🎌</span>
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item"><a href="index.html" class="nav-link">Home 🏠</a></li>
+                <li class="nav-item"><a href="#slayers" class="nav-link">Slayers ⚔️</a></li>
+                <li class="nav-item"><a href="#demons" class="nav-link">Demons 👹</a></li>
+                <li class="nav-item"><a href="#breathing" class="nav-link">Breathing 🌬️</a></li>
+                <li class="nav-item"><a href="#gallery" class="nav-link">Gallery 🖼️</a></li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero ds-hero">
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1 class="hero-title">
+                    DEMON SLAYER <span class="emoji">🗡️</span>
+                </h1>
+                <p class="hero-subtitle">
+                    Follow Tanjiro Kamado's journey as he becomes a demon slayer to save his sister 
+                    and avenge his family! Master the breathing techniques and wield the Nichirin Blade! 
+                    <span class="emoji">⚔️</span>
+                </p>
+                <div class="hero-buttons">
+                    <button class="btn sword-button" id="swordBtn">
+                        WATER BREATHING <span class="emoji">💧</span>
+                    </button>
+                    <button class="btn btn-secondary">
+                        Watch Trailer <span class="emoji">🎬</span>
+                    </button>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="tanjiro-character">
+                    <div class="character-circle">
+                        <span class="character-emoji">👨‍🦰</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Slayers Section -->
+    <section id="slayers" class="trending">
+        <div class="container">
+            <h2 class="section-title">
+                Demon Slayers <span class="emoji">⚔️</span>
+            </h2>
+            <div class="anime-grid">
+                <div class="anime-card slayer-card" data-aos="fade-up">
+                    <div class="anime-image">
+                        <span class="anime-emoji">👨‍🦰</span>
+                        <div class="slayer-rank">Water Hashira</div>
+                    </div>
+                    <div class="anime-info">
+                        <h3>Tanjiro Kamado</h3>
+                        <p>Main protagonist with Water Breathing technique</p>
+                        <div class="rating">
+                            <span class="stars">⭐⭐⭐⭐⭐</span>
+                            <span class="score">9.8</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="anime-card slayer-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="anime-image">
+                        <span class="anime-emoji">👨‍🦱</span>
+                        <div class="slayer-rank">Thunder Hashira</div>
+                    </div>
+                    <div class="anime-info">
+                        <h3>Zenitsu Agatsuma</h3>
+                        <p>Thunder Breathing user with cowardly personality</p>
+                        <div class="rating">
+                            <span class="stars">⭐⭐⭐⭐⭐</span>
+                            <span class="score">9.5</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="anime-card slayer-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="anime-image">
+                        <span class="anime-emoji">👨‍🦲</span>
+                        <div class="slayer-rank">Beast Hashira</div>
+                    </div>
+                    <div class="anime-info">
+                        <h3>Inosuke Hashibira</h3>
+                        <p>Beast Breathing user with wild personality</p>
+                        <div class="rating">
+                            <span class="stars">⭐⭐⭐⭐⭐</span>
+                            <span class="score">9.6</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="anime-card slayer-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="anime-image">
+                        <span class="anime-emoji">👩‍🦰</span>
+                        <div class="slayer-rank">Demon</div>
+                    </div>
+                    <div class="anime-info">
+                        <h3>Nezuko Kamado</h3>
+                        <p>Tanjiro's sister turned demon</p>
+                        <div class="rating">
+                            <span class="stars">⭐⭐⭐⭐⭐</span>
+                            <span class="score">9.7</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Demons Section -->
+    <section id="demons" class="genres">
+        <div class="container">
+            <h2 class="section-title">
+                Powerful Demons <span class="emoji">👹</span>
+            </h2>
+            <div class="genre-grid">
+                <div class="genre-card" data-aos="zoom-in">
+                    <div class="genre-icon">👹</div>
+                    <h3>Muzan Kibutsuji</h3>
+                    <p>Demon King and main antagonist</p>
+                </div>
+                <div class="genre-card" data-aos="zoom-in" data-aos-delay="100">
+                    <div class="genre-icon">🕷️</div>
+                    <h3>Rui</h3>
+                    <p>Lower Moon demon with spider powers</p>
+                </div>
+                <div class="genre-card" data-aos="zoom-in" data-aos-delay="200">
+                    <div class="genre-icon">🎭</div>
+                    <h3>Enmu</h3>
+                    <p>Lower Moon demon with dream powers</p>
+                </div>
+                <div class="genre-card" data-aos="zoom-in" data-aos-delay="300">
+                    <div class="genre-icon">🎪</div>
+                    <h3>Daki</h3>
+                    <p>Upper Moon demon with ribbon powers</p>
+                </div>
+                <div class="genre-card" data-aos="zoom-in" data-aos-delay="400">
+                    <div class="genre-icon">🎭</div>
+                    <h3>Gyutaro</h3>
+                    <p>Upper Moon demon with sickle powers</p>
+                </div>
+                <div class="genre-card" data-aos="zoom-in" data-aos-delay="500">
+                    <div class="genre-icon">🌙</div>
+                    <h3>Akaza</h3>
+                    <p>Upper Moon demon with martial arts</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Breathing Section -->
+    <section id="breathing" class="about">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-text" data-aos="fade-right">
+                    <h2 class="section-title">
+                        Breathing Techniques <span class="emoji">🌬️</span>
+                    </h2>
+                    <p>
+                        Breathing techniques are the foundation of demon slayer combat. Each technique 
+                        enhances the user's physical abilities and allows them to channel their strength 
+                        through their Nichirin Blade to defeat demons. <span class="emoji">🗡️</span>
+                    </p>
+                    <div class="features">
+                        <div class="feature">
+                            <span class="feature-icon">💧</span>
+                            <span>Water Breathing</span>
+                        </div>
+                        <div class="feature">
+                            <span class="feature-icon">⚡</span>
+                            <span>Thunder Breathing</span>
+                        </div>
+                        <div class="feature">
+                            <span class="feature-icon">🔥</span>
+                            <span>Flame Breathing</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-visual" data-aos="fade-left">
+                    <div class="stats-container">
+                        <div class="stat-item">
+                            <div class="stat-number">9</div>
+                            <div class="stat-label">Breathing Styles</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">12</div>
+                            <div class="stat-label">Hashira</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">∞</div>
+                            <div class="stat-label">Techniques</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="gallery" class="contact">
+        <div class="container">
+            <h2 class="section-title">
+                Epic Battles <span class="emoji">⚔️</span>
+            </h2>
+            <div class="anime-grid">
+                <div class="anime-card" data-aos="fade-up">
+                    <div class="anime-image">
+                        <span class="anime-emoji">💧</span>
+                    </div>
+                    <div class="anime-info">
+                        <h3>Water Breathing Forms</h3>
+                        <p>Tanjiro's signature techniques</p>
+                    </div>
+                </div>
+                <div class="anime-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="anime-image">
+                        <span class="anime-emoji">⚡</span>
+                    </div>
+                    <div class="anime-info">
+                        <h3>Thunder Breathing</h3>
+                        <p>Zenitsu's lightning-fast attacks</p>
+                    </div>
+                </div>
+                <div class="anime-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="anime-image">
+                        <span class="anime-emoji">🔥</span>
+                    </div>
+                    <div class="anime-info">
+                        <h3>Flame Breathing</h3>
+                        <p>Rengoku's powerful techniques</p>
+                    </div>
+                </div>
+                <div class="anime-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="anime-image">
+                        <span class="anime-emoji">🌪️</span>
+                    </div>
+                    <div class="anime-info">
+                        <h3>Wind Breathing</h3>
+                        <p>Sanemi's cutting techniques</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Demon Slayer <span class="emoji">🗡️</span></h3>
+                    <p>Slay demons, protect humanity</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-facebook"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>Breathing Styles</h4>
+                    <ul>
+                        <li><a href="#">Water Breathing</a></li>
+                        <li><a href="#">Thunder Breathing</a></li>
+                        <li><a href="#">Flame Breathing</a></li>
+                        <li><a href="#">Wind Breathing</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Demon Ranks</h4>
+                    <ul>
+                        <li><a href="#">Lower Moons</a></li>
+                        <li><a href="#">Upper Moons</a></li>
+                        <li><a href="#">Demon King</a></li>
+                        <li><a href="#">Regular Demons</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Demon Slayer. All rights reserved. <span class="emoji">🗡️</span></p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        // Demon Slayer specific interactions
+        const swordBtn = document.getElementById('swordBtn');
+        
+        swordBtn.addEventListener('click', function(e) {
+            // Create sword effect
+            const swordEffect = document.createElement('div');
+            swordEffect.className = 'sword-effect';
+            swordEffect.style.left = (e.clientX - 50) + 'px';
+            swordEffect.style.top = (e.clientY - 50) + 'px';
+            document.body.appendChild(swordEffect);
+            
+            // Remove effect after animation
+            setTimeout(() => {
+                swordEffect.remove();
+            }, 700);
+            
+            // Slash effect
+            document.body.style.animation = 'slash 0.7s ease-in-out';
+            setTimeout(() => {
+                document.body.style.animation = '';
+            }, 700);
+        });
+
+        // Add slash animation
+        const slashStyle = document.createElement('style');
+        slashStyle.textContent = `
+            @keyframes slash {
+                0%, 100% { transform: skewX(0deg); }
+                25% { transform: skewX(-2deg); }
+                75% { transform: skewX(2deg); }
+            }
+        `;
+        document.head.appendChild(slashStyle);
+
+        // Random sword effects
+        setInterval(() => {
+            if (Math.random() < 0.06) {
+                const swordEffect = document.createElement('div');
+                swordEffect.className = 'sword-effect';
+                swordEffect.style.left = Math.random() * window.innerWidth + 'px';
+                swordEffect.style.top = Math.random() * window.innerHeight + 'px';
+                document.body.appendChild(swordEffect);
+                
+                setTimeout(() => {
+                    swordEffect.remove();
+                }, 700);
+            }
+        }, 3000);
+
+        // Slayer transformation effect
+        const slayerCards = document.querySelectorAll('.slayer-card');
+        slayerCards.forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-15px) scale(1.05) rotate(2deg)';
+                this.style.boxShadow = '0 25px 50px rgba(231, 76, 60, 0.4)';
+                this.style.borderColor = 'var(--ds-primary)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = '';
+                this.style.boxShadow = '';
+                this.style.borderColor = '';
+            });
+        });
+
+        // Nichirin Blade effect
+        const nichirinEffect = () => {
+            const notification = document.createElement('div');
+            notification.style.cssText = `
+                position: fixed;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                background: var(--ds-gradient);
+                color: white;
+                padding: 2rem;
+                border-radius: 20px;
+                font-size: 2rem;
+                font-weight: 900;
+                z-index: 10000;
+                animation: nichirinAnim 2s ease-in-out;
+            `;
+            notification.textContent = 'NICHIRIN BLADE! 🗡️';
+            document.body.appendChild(notification);
+            
+            setTimeout(() => {
+                notification.remove();
+            }, 2000);
+        };
+
+        // Add nichirin animation
+        const nichirinStyle = document.createElement('style');
+        nichirinStyle.textContent = `
+            @keyframes nichirinAnim {
+                0% { transform: translate(-50%, -50%) scale(0) rotate(0deg); opacity: 0; }
+                50% { transform: translate(-50%, -50%) scale(1.2) rotate(180deg); opacity: 1; }
+                100% { transform: translate(-50%, -50%) scale(1) rotate(360deg); opacity: 0; }
+            }
+        `;
+        document.head.appendChild(nichirinStyle);
+
+        // Trigger nichirin effect on specific key combination
+        let keySequence = [];
+        document.addEventListener('keydown', (e) => {
+            keySequence.push(e.key);
+            if (keySequence.length > 5) keySequence.shift();
+            
+            if (keySequence.join('') === 'blade') {
+                nichirinEffect();
+                keySequence = [];
+            }
+        });
+    </script>
+</body>
+</html> 

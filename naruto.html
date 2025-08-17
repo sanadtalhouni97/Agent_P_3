@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Naruto - AnimeVerse</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --naruto-primary: #ff6b35;
+            --naruto-secondary: #f7931e;
+            --naruto-accent: #ffd23f;
+            --naruto-blue: #4a90e2;
+            --naruto-red: #e74c3c;
+            --naruto-green: #27ae60;
+            --naruto-gradient: linear-gradient(135deg, #ff6b35 0%, #f7931e 50%, #ffd23f 100%);
+        }
+
+        .naruto-hero {
+            background: var(--naruto-gradient);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .naruto-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="leaf" width="20" height="20" patternUnits="userSpaceOnUse"><text x="10" y="15" text-anchor="middle" fill="white" opacity="0.1" font-size="15">🍃</text></pattern></defs><rect width="100" height="100" fill="url(%23leaf)"/></svg>');
+            animation: leafFall 15s linear infinite;
+        }
+
+        @keyframes leafFall {
+            0% { transform: translateY(-100px) rotate(0deg); }
+            100% { transform: translateY(100vh) rotate(360deg); }
+        }
+
+        .naruto-character {
+            position: relative;
+            animation: narutoFloat 5s ease-in-out infinite;
+        }
+
+        @keyframes narutoFloat {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-25px) rotate(3deg); }
+        }
+
+        .chakra-effect {
+            position: absolute;
+            width: 120px;
+            height: 120px;
+            background: radial-gradient(circle, rgba(255,107,53,0.4) 0%, transparent 70%);
+            border-radius: 50%;
+            animation: chakraExpand 0.8s ease-out;
+            pointer-events: none;
+        }
+
+        @keyframes chakraExpand {
+            0% { transform: scale(0) rotate(0deg); opacity: 1; }
+            100% { transform: scale(2) rotate(180deg); opacity: 0; }
+        }
+
+        .hero-title {
+            font-weight: 900;
+            text-shadow: 3px 3px 0px var(--naruto-blue);
+            color: white;
+        }
+
+        .ninja-button {
+            background: var(--naruto-blue);
+            color: white;
+            border: 3px solid var(--naruto-accent);
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            transition: all 0.3s ease;
+        }
+
+        .ninja-button:hover {
+            background: var(--naruto-accent);
+            color: var(--naruto-blue);
+            transform: scale(1.1) rotate(-1deg);
+            box-shadow: 0 10px 30px rgba(74, 144, 226, 0.4);
+        }
+
+        .floating-icons .floating-icon {
+            color: var(--naruto-accent);
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .ninja-card {
+            background: linear-gradient(145deg, #2c3e50, #34495e);
+            color: white;
+            border: 2px solid var(--naruto-accent);
+            transition: all 0.3s ease;
+        }
+
+        .ninja-card:hover {
+            transform: translateY(-10px) scale(1.05);
+            box-shadow: 0 20px 40px rgba(255, 107, 53, 0.3);
+            border-color: var(--naruto-primary);
+        }
+
+        .ninja-rank {
+            background: var(--naruto-gradient);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            font-weight: 700;
+            font-size: 0.9rem;
+        }
+
+        .trending {
+            background: #ecf0f1;
+        }
+
+        .genres {
+            background: #bdc3c7;
+        }
+
+        .about {
+            background: #ecf0f1;
+        }
+
+        .contact {
+            background: #bdc3c7;
+        }
+
+        .section-title {
+            color: #2c3e50;
+        }
+
+        .anime-card, .genre-card {
+            background: white;
+            color: #2c3e50;
+            border: 1px solid var(--naruto-accent);
+        }
+
+        .anime-card:hover, .genre-card:hover {
+            border-color: var(--naruto-primary);
+        }
+
+        .stat-item {
+            background: white;
+            color: #2c3e50;
+            border: 1px solid var(--naruto-accent);
+        }
+
+        .contact-item {
+            background: white;
+            color: #2c3e50;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            background: white;
+            color: #2c3e50;
+            border-color: var(--naruto-accent);
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            border-color: var(--naruto-primary);
+        }
+    </style>
+</head>
+<body>
+    <!-- Floating Icons -->
+    <div class="floating-icons">
+        <div class="floating-icon" data-speed="2">🍃</div>
+        <div class="floating-icon" data-speed="1.5">⚡</div>
+        <div class="floating-icon" data-speed="3">🔥</div>
+        <div class="floating-icon" data-speed="2.5">💧</div>
+        <div class="floating-icon" data-speed="1.8">🌪️</div>
+        <div class="floating-icon" data-speed="2.2">🗡️</div>
+        <div class="floating-icon" data-speed="1.3">🦊</div>
+        <div class="floating-icon" data-speed="2.8">🌟</div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <span class="logo-text">AnimeVerse</span>
+                <span class="logo-emoji">🎌</span>
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item"><a href="index.html" class="nav-link">Home 🏠</a></li>
+                <li class="nav-item"><a href="#ninjas" class="nav-link">Ninjas 🥷</a></li>
+                <li class="nav-item"><a href="#jutsu" class="nav-link">Jutsu ⚡</a></li>
+                <li class="nav-item"><a href="#villages" class="nav-link">Villages 🏘️</a></li>
+                <li class="nav-item"><a href="#gallery" class="nav-link">Gallery 🖼️</a></li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero naruto-hero">
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1 class="hero-title">
+                    NARUTO <span class="emoji">🍃</span>
+                </h1>
+                <p class="hero-subtitle">
+                    Follow Naruto Uzumaki's journey from a young ninja to becoming the Hokage! 
+                    Master the art of ninjutsu and discover the power of friendship and determination! 
+                    <span class="emoji">⚡</span>
+                </p>
+                <div class="hero-buttons">
+                    <button class="btn ninja-button" id="chakraBtn">
+                        RASENGAN <span class="emoji">🌀</span>
+                    </button>
+                    <button class="btn btn-secondary">
+                        Watch Trailer <span class="emoji">🎬</span>
+                    </button>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="naruto-character">
+                    <div class="character-circle">
+                        <span class="character-emoji">🥷</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Ninjas Section -->
+    <section id="ninjas" class="trending">
+        <div class="container">
+            <h2 class="section-title">
+                Legendary Ninjas <span class="emoji">🥷</span>
+            </h2>
+            <div class="anime-grid">
+                <div class="anime-card ninja-card" data-aos="fade-up">
+                    <div class="anime-image">
+                        <span class="anime-emoji">🥷</span>
+                        <div class="ninja-rank">Hokage</div>
+                    </div>
+                    <div class="anime-info">
+                        <h3>Naruto Uzumaki</h3>
+                        <p>The main protagonist with the Nine-Tails Fox sealed inside him</p>
+                        <div class="rating">
+                            <span class="stars">⭐⭐⭐⭐⭐</span>
+                            <span class="score">9.9</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="anime-card ninja-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="anime-image">
+                        <span class="anime-emoji">👨‍🦰</span>
+                        <div class="ninja-rank">Copy Ninja</div>
+                    </div>
+                    <div class="anime-info">
+                        <h3>Kakashi Hatake</h3>
+                        <p>Legendary ninja with the Sharingan eye and 1000+ jutsu</p>
+                        <div class="rating">
+                            <span class="stars">⭐⭐⭐⭐⭐</span>
+                            <span class="score">9.7</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="anime-card ninja-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="anime-image">
+                        <span class="anime-emoji">👨‍🦱</span>
+                        <div class="ninja-rank">Uchiha</div>
+                    </div>
+                    <div class="anime-info">
+                        <h3>Sasuke Uchiha</h3>
+                        <p>Naruto's rival with the Sharingan and powerful lightning jutsu</p>
+                        <div class="rating">
+                            <span class="stars">⭐⭐⭐⭐⭐</span>
+                            <span class="score">9.6</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="anime-card ninja-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="anime-image">
+                        <span class="anime-emoji">👩‍🦰</span>
+                        <div class="ninja-rank">Kunoichi</div>
+                    </div>
+                    <div class="anime-info">
+                        <h3>Sakura Haruno</h3>
+                        <p>Medical ninja with incredible strength and healing abilities</p>
+                        <div class="rating">
+                            <span class="stars">⭐⭐⭐⭐⭐</span>
+                            <span class="score">9.4</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Jutsu Section -->
+    <section id="jutsu" class="genres">
+        <div class="container">
+            <h2 class="section-title">
+                Ninja Techniques <span class="emoji">⚡</span>
+            </h2>
+            <div class="genre-grid">
+                <div class="genre-card" data-aos="zoom-in">
+                    <div class="genre-icon">🌀</div>
+                    <h3>Rasengan</h3>
+                    <p>Spiraling sphere of chakra</p>
+                </div>
+                <div class="genre-card" data-aos="zoom-in" data-aos-delay="100">
+                    <div class="genre-icon">⚡</div>
+                    <h3>Chidori</h3>
+                    <p>Lightning blade technique</p>
+                </div>
+                <div class="genre-card" data-aos="zoom-in" data-aos-delay="200">
+                    <div class="genre-icon">🔥</div>
+                    <h3>Fireball Jutsu</h3>
+                    <p>Massive fire attack</p>
+                </div>
+                <div class="genre-card" data-aos="zoom-in" data-aos-delay="300">
+                    <div class="genre-icon">💧</div>
+                    <h3>Water Dragon</h3>
+                    <p>Water manipulation technique</p>
+                </div>
+                <div class="genre-card" data-aos="zoom-in" data-aos-delay="400">
+                    <div class="genre-icon">🌪️</div>
+                    <h3>Wind Release</h3>
+                    <p>Wind-based attacks</p>
+                </div>
+                <div class="genre-card" data-aos="zoom-in" data-aos-delay="500">
+                    <div class="genre-icon">🦊</div>
+                    <h3>Shadow Clone</h3>
+                    <p>Multiple clone technique</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Villages Section -->
+    <section id="villages" class="about">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-text" data-aos="fade-right">
+                    <h2 class="section-title">
+                        Hidden Villages <span class="emoji">🏘️</span>
+                    </h2>
+                    <p>
+                        The ninja world is divided into five major hidden villages, each with their own 
+                        unique culture, techniques, and powerful ninjas. From the Leaf Village to the 
+                        Sand Village, each has its own history and traditions. <span class="emoji">🍃</span>
+                    </p>
+                    <div class="features">
+                        <div class="feature">
+                            <span class="feature-icon">🍃</span>
+                            <span>Hidden Leaf Village</span>
+                        </div>
+                        <div class="feature">
+                            <span class="feature-icon">🏜️</span>
+                            <span>Hidden Sand Village</span>
+                        </div>
+                        <div class="feature">
+                            <span class="feature-icon">🌊</span>
+                            <span>Hidden Mist Village</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-visual" data-aos="fade-left">
+                    <div class="stats-container">
+                        <div class="stat-item">
+                            <div class="stat-number">5</div>
+                            <div class="stat-label">Major Villages</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">1000+</div>
+                            <div class="stat-label">Jutsu Techniques</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">720</div>
+                            <div class="stat-label">Episodes</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="gallery" class="contact">
+        <div class="container">
+            <h2 class="section-title">
+                Epic Battles <span class="emoji">⚔️</span>
+            </h2>
+            <div class="anime-grid">
+                <div class="anime-card" data-aos="fade-up">
+                    <div class="anime-image">
+                        <span class="anime-emoji">⚔️</span>
+                    </div>
+                    <div class="anime-info">
+                        <h3>Naruto vs Sasuke</h3>
+                        <p>The ultimate battle between friends turned rivals</p>
+                    </div>
+                </div>
+                <div class="anime-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="anime-image">
+                        <span class="anime-emoji">🦊</span>
+                    </div>
+                    <div class="anime-info">
+                        <h3>Nine-Tails Mode</h3>
+                        <p>Naruto's most powerful transformation</p>
+                    </div>
+                </div>
+                <div class="anime-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="anime-image">
+                        <span class="anime-emoji">👁️</span>
+                    </div>
+                    <div class="anime-info">
+                        <h3>Sharingan Awakening</h3>
+                        <p>Sasuke's evolution of the Uchiha eye</p>
+                    </div>
+                </div>
+                <div class="anime-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="anime-image">
+                        <span class="anime-emoji">🌟</span>
+                    </div>
+                    <div class="anime-info">
+                        <h3>Sage Mode</h3>
+                        <p>Naruto's natural energy transformation</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Naruto <span class="emoji">🍃</span></h3>
+                    <p>Believe it! The journey of a ninja</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-facebook"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>Hidden Villages</h4>
+                    <ul>
+                        <li><a href="#">Hidden Leaf</a></li>
+                        <li><a href="#">Hidden Sand</a></li>
+                        <li><a href="#">Hidden Mist</a></li>
+                        <li><a href="#">Hidden Cloud</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Jutsu Types</h4>
+                    <ul>
+                        <li><a href="#">Ninjutsu</a></li>
+                        <li><a href="#">Genjutsu</a></li>
+                        <li><a href="#">Taijutsu</a></li>
+                        <li><a href="#">Kekkei Genkai</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Naruto. All rights reserved. <span class="emoji">🍃</span></p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        // Naruto specific interactions
+        const chakraBtn = document.getElementById('chakraBtn');
+        
+        chakraBtn.addEventListener('click', function(e) {
+            // Create chakra effect
+            const chakraEffect = document.createElement('div');
+            chakraEffect.className = 'chakra-effect';
+            chakraEffect.style.left = (e.clientX - 60) + 'px';
+            chakraEffect.style.top = (e.clientY - 60) + 'px';
+            document.body.appendChild(chakraEffect);
+            
+            // Remove effect after animation
+            setTimeout(() => {
+                chakraEffect.remove();
+            }, 800);
+            
+            // Shake effect
+            document.body.style.animation = 'shake 0.5s ease-in-out';
+            setTimeout(() => {
+                document.body.style.animation = '';
+            }, 500);
+        });
+
+        // Add shake animation
+        const shakeStyle = document.createElement('style');
+        shakeStyle.textContent = `
+            @keyframes shake {
+                0%, 100% { transform: translateX(0); }
+                25% { transform: translateX(-5px); }
+                75% { transform: translateX(5px); }
+            }
+        `;
+        document.head.appendChild(shakeStyle);
+
+        // Random chakra effects
+        setInterval(() => {
+            if (Math.random() < 0.08) {
+                const chakraEffect = document.createElement('div');
+                chakraEffect.className = 'chakra-effect';
+                chakraEffect.style.left = Math.random() * window.innerWidth + 'px';
+                chakraEffect.style.top = Math.random() * window.innerHeight + 'px';
+                document.body.appendChild(chakraEffect);
+                
+                setTimeout(() => {
+                    chakraEffect.remove();
+                }, 800);
+            }
+        }, 2500);
+
+        // Ninja transformation effect
+        const ninjaCards = document.querySelectorAll('.ninja-card');
+        ninjaCards.forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-15px) scale(1.05) rotate(2deg)';
+                this.style.boxShadow = '0 25px 50px rgba(255, 107, 53, 0.4)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = '';
+                this.style.boxShadow = '';
+            });
+        });
+    </script>
+</body>
+</html> 

@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Attack on Titan - AnimeVerse</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --aot-primary: #2c3e50;
+            --aot-secondary: #34495e;
+            --aot-accent: #e74c3c;
+            --aot-gold: #f39c12;
+            --aot-red: #c0392b;
+            --aot-white: #ecf0f1;
+            --aot-gradient: linear-gradient(135deg, #2c3e50 0%, #34495e 50%, #e74c3c 100%);
+        }
+
+        body {
+            background: var(--aot-primary);
+            color: var(--aot-white);
+        }
+
+        .aot-hero {
+            background: var(--aot-gradient);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .aot-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="wall" width="30" height="30" patternUnits="userSpaceOnUse"><rect x="0" y="0" width="30" height="30" fill="white" opacity="0.05"/><line x1="0" y1="0" x2="30" y2="30" stroke="white" opacity="0.1" stroke-width="1"/></pattern></defs><rect width="100" height="100" fill="url(%23wall)"/></svg>');
+            animation: wallMove 20s linear infinite;
+        }
+
+        @keyframes wallMove {
+            0% { transform: translateX(0px); }
+            100% { transform: translateX(-100px); }
+        }
+
+        .eren-character {
+            position: relative;
+            animation: erenFloat 6s ease-in-out infinite;
+        }
+
+        @keyframes erenFloat {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(2deg); }
+        }
+
+        .titan-effect {
+            position: absolute;
+            width: 150px;
+            height: 150px;
+            background: radial-gradient(circle, rgba(231,76,60,0.4) 0%, transparent 70%);
+            border-radius: 50%;
+            animation: titanExpand 1.2s ease-out;
+            pointer-events: none;
+        }
+
+        @keyframes titanExpand {
+            0% { transform: scale(0) rotate(0deg); opacity: 1; }
+            100% { transform: scale(2.5) rotate(180deg); opacity: 0; }
+        }
+
+        .hero-title {
+            font-weight: 900;
+            text-shadow: 3px 3px 0px var(--aot-red);
+            color: var(--aot-white);
+        }
+
+        .titan-button {
+            background: var(--aot-red);
+            color: var(--aot-white);
+            border: 3px solid var(--aot-gold);
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            transition: all 0.3s ease;
+        }
+
+        .titan-button:hover {
+            background: var(--aot-gold);
+            color: var(--aot-primary);
+            transform: scale(1.1);
+            box-shadow: 0 10px 30px rgba(231, 76, 60, 0.4);
+        }
+
+        .floating-icons .floating-icon {
+            color: var(--aot-gold);
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
+        }
+
+        .soldier-card {
+            background: linear-gradient(145deg, #2c3e50, #34495e);
+            color: var(--aot-white);
+            border: 2px solid var(--aot-gold);
+            transition: all 0.3s ease;
+        }
+
+        .soldier-card:hover {
+            transform: translateY(-10px) scale(1.05);
+            box-shadow: 0 20px 40px rgba(231, 76, 60, 0.3);
+            border-color: var(--aot-accent);
+        }
+
+        .corps-rank {
+            background: var(--aot-gradient);
+            color: var(--aot-white);
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            font-weight: 700;
+            font-size: 0.9rem;
+        }
+
+        .trending, .genres, .about, .contact {
+            background: var(--aot-secondary);
+        }
+
+        .anime-card, .genre-card {
+            background: var(--aot-primary);
+            color: var(--aot-white);
+            border: 1px solid var(--aot-gold);
+        }
+
+        .anime-card:hover, .genre-card:hover {
+            border-color: var(--aot-accent);
+        }
+
+        .section-title {
+            color: var(--aot-white);
+        }
+
+        .stat-item {
+            background: var(--aot-primary);
+            color: var(--aot-white);
+            border: 1px solid var(--aot-gold);
+        }
+
+        .contact-item {
+            background: var(--aot-primary);
+            color: var(--aot-white);
+        }
+
+        .form-group input,
+        .form-group textarea {
+            background: var(--aot-primary);
+            color: var(--aot-white);
+            border-color: var(--aot-gold);
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            border-color: var(--aot-accent);
+        }
+    </style>
+</head>
+<body>
+    <!-- Floating Icons -->
+    <div class="floating-icons">
+        <div class="floating-icon" data-speed="2">👹</div>
+        <div class="floating-icon" data-speed="1.5">🗡️</div>
+        <div class="floating-icon" data-speed="3">⚔️</div>
+        <div class="floating-icon" data-speed="2.5">🏰</div>
+        <div class="floating-icon" data-speed="1.8">🦅</div>
+        <div class="floating-icon" data-speed="2.2">💀</div>
+        <div class="floating-icon" data-speed="1.3">🔥</div>
+        <div class="floating-icon" data-speed="2.8">🌟</div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <span class="logo-text">AnimeVerse</span>
+                <span class="logo-emoji">🎌</span>
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item"><a href="index.html" class="nav-link">Home 🏠</a></li>
+                <li class="nav-item"><a href="#soldiers" class="nav-link">Soldiers ⚔️</a></li>
+                <li class="nav-item"><a href="#titans" class="nav-link">Titans 👹</a></li>
+                <li class="nav-item"><a href="#corps" class="nav-link">Corps 🦅</a></li>
+                <li class="nav-item"><a href="#gallery" class="nav-link">Gallery 🖼️</a></li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero aot-hero">
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1 class="hero-title">
+                    ATTACK ON TITAN <span class="emoji">👹</span>
+                </h1>
+                <p class="hero-subtitle">
+                    Humanity's last stand against the Titans! Follow Eren Yeager and the Survey Corps 
+                    as they fight for survival and uncover the truth behind the walls! 
+                    <span class="emoji">⚔️</span>
+                </p>
+                <div class="hero-buttons">
+                    <button class="btn titan-button" id="titanBtn">
+                        TITAN SHIFT <span class="emoji">👹</span>
+                    </button>
+                    <button class="btn btn-secondary">
+                        Watch Trailer <span class="emoji">🎬</span>
+                    </button>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="eren-character">
+                    <div class="character-circle">
+                        <span class="character-emoji">👨‍🦰</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Soldiers Section -->
+    <section id="soldiers" class="trending">
+        <div class="container">
+            <h2 class="section-title">
+                Survey Corps <span class="emoji">⚔️</span>
+            </h2>
+            <div class="anime-grid">
+                <div class="anime-card soldier-card" data-aos="fade-up">
+                    <div class="anime-image">
+                        <span class="anime-emoji">👨‍🦰</span>
+                        <div class="corps-rank">Attack Titan</div>
+                    </div>
+                    <div class="anime-info">
+                        <h3>Eren Yeager</h3>
+                        <p>Main protagonist with the power of the Attack Titan</p>
+                        <div class="rating">
+                            <span class="stars">⭐⭐⭐⭐⭐</span>
+                            <span class="score">9.8</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="anime-card soldier-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="anime-image">
+                        <span class="anime-emoji">👩‍🦰</span>
+                        <div class="corps-rank">Scout Regiment</div>
+                    </div>
+                    <div class="anime-info">
+                        <h3>Mikasa Ackerman</h3>
+                        <p>Elite soldier and Eren's protector</p>
+                        <div class="rating">
+                            <span class="stars">⭐⭐⭐⭐⭐</span>
+                            <span class="score">9.7</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="anime-card soldier-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="anime-image">
+                        <span class="anime-emoji">👨‍🦱</span>
+                        <div class="corps-rank">Scout Regiment</div>
+                    </div>
+                    <div class="anime-info">
+                        <h3>Armin Arlert</h3>
+                        <p>Strategic genius and Eren's best friend</p>
+                        <div class="rating">
+                            <span class="stars">⭐⭐⭐⭐⭐</span>
+                            <span class="score">9.5</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="anime-card soldier-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="anime-image">
+                        <span class="anime-emoji">👨‍🦲</span>
+                        <div class="corps-rank">Commander</div>
+                    </div>
+                    <div class="anime-info">
+                        <h3>Levi Ackerman</h3>
+                        <p>Humanity's strongest soldier</p>
+                        <div class="rating">
+                            <span class="stars">⭐⭐⭐⭐⭐</span>
+                            <span class="score">9.9</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Titans Section -->
+    <section id="titans" class="genres">
+        <div class="container">
+            <h2 class="section-title">
+                Titan Types <span class="emoji">👹</span>
+            </h2>
+            <div class="genre-grid">
+                <div class="genre-card" data-aos="zoom-in">
+                    <div class="genre-icon">👹</div>
+                    <h3>Pure Titans</h3>
+                    <p>Mindless giants that eat humans</p>
+                </div>
+                <div class="genre-card" data-aos="zoom-in" data-aos-delay="100">
+                    <div class="genre-icon">👨‍🦰</div>
+                    <h3>Attack Titan</h3>
+                    <p>Eren's titan form</p>
+                </div>
+                <div class="genre-card" data-aos="zoom-in" data-aos-delay="200">
+                    <div class="genre-icon">👩‍🦰</div>
+                    <h3>Female Titan</h3>
+                    <p>Annie's titan form</p>
+                </div>
+                <div class="genre-card" data-aos="zoom-in" data-aos-delay="300">
+                    <div class="genre-icon">👨‍🦱</div>
+                    <h3>Colossal Titan</h3>
+                    <p>Massive steam-emitting titan</p>
+                </div>
+                <div class="genre-card" data-aos="zoom-in" data-aos-delay="400">
+                    <div class="genre-icon">🦴</div>
+                    <h3>Armored Titan</h3>
+                    <p>Reiner's armored form</p>
+                </div>
+                <div class="genre-card" data-aos="zoom-in" data-aos-delay="500">
+                    <div class="genre-icon">🦵</div>
+                    <h3>Beast Titan</h3>
+                    <p>Zeke's ape-like titan</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Corps Section -->
+    <section id="corps" class="about">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-text" data-aos="fade-right">
+                    <h2 class="section-title">
+                        Military Divisions <span class="emoji">🦅</span>
+                    </h2>
+                    <p>
+                        The military is divided into three main branches: the Survey Corps ventures beyond 
+                        the walls to fight Titans, the Garrison Regiment protects the walls, and the Military 
+                        Police maintains order within the walls. <span class="emoji">⚔️</span>
+                    </p>
+                    <div class="features">
+                        <div class="feature">
+                            <span class="feature-icon">🦅</span>
+                            <span>Survey Corps</span>
+                        </div>
+                        <div class="feature">
+                            <span class="feature-icon">🏰</span>
+                            <span>Garrison Regiment</span>
+                        </div>
+                        <div class="feature">
+                            <span class="feature-icon">⚖️</span>
+                            <span>Military Police</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-visual" data-aos="fade-left">
+                    <div class="stats-container">
+                        <div class="stat-item">
+                            <div class="stat-number">3</div>
+                            <div class="stat-label">Walls</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">9</div>
+                            <div class="stat-label">Titan Shifters</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">100</div>
+                            <div class="stat-label">Years of Peace</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="gallery" class="contact">
+        <div class="container">
+            <h2 class="section-title">
+                Epic Moments <span class="emoji">🎬</span>
+            </h2>
+            <div class="anime-grid">
+                <div class="anime-card" data-aos="fade-up">
+                    <div class="anime-image">
+                        <span class="anime-emoji">👹</span>
+                    </div>
+                    <div class="anime-info">
+                        <h3>First Titan Transformation</h3>
+                        <p>Eren's first time becoming a titan</p>
+                    </div>
+                </div>
+                <div class="anime-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="anime-image">
+                        <span class="anime-emoji">🗡️</span>
+                    </div>
+                    <div class="anime-info">
+                        <h3>Levi vs Beast Titan</h3>
+                        <p>Humanity's strongest vs the Beast</p>
+                    </div>
+                </div>
+                <div class="anime-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="anime-image">
+                        <span class="anime-emoji">🔥</span>
+                    </div>
+                    <div class="anime-info">
+                        <h3>Wall Maria Breach</h3>
+                        <p>The beginning of the end</p>
+                    </div>
+                </div>
+                <div class="anime-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="anime-image">
+                        <span class="anime-emoji">⚔️</span>
+                    </div>
+                    <div class="anime-info">
+                        <h3>Final Battle</h3>
+                        <p>The ultimate confrontation</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Attack on Titan <span class="emoji">👹</span></h3>
+                    <p>Humanity's fight for survival</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-facebook"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>Military Divisions</h4>
+                    <ul>
+                        <li><a href="#">Survey Corps</a></li>
+                        <li><a href="#">Garrison Regiment</a></li>
+                        <li><a href="#">Military Police</a></li>
+                        <li><a href="#">Training Corps</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Titan Shifters</h4>
+                    <ul>
+                        <li><a href="#">Attack Titan</a></li>
+                        <li><a href="#">Colossal Titan</a></li>
+                        <li><a href="#">Armored Titan</a></li>
+                        <li><a href="#">Beast Titan</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Attack on Titan. All rights reserved. <span class="emoji">👹</span></p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        // Attack on Titan specific interactions
+        const titanBtn = document.getElementById('titanBtn');
+        
+        titanBtn.addEventListener('click', function(e) {
+            // Create titan effect
+            const titanEffect = document.createElement('div');
+            titanEffect.className = 'titan-effect';
+            titanEffect.style.left = (e.clientX - 75) + 'px';
+            titanEffect.style.top = (e.clientY - 75) + 'px';
+            document.body.appendChild(titanEffect);
+            
+            // Remove effect after animation
+            setTimeout(() => {
+                titanEffect.remove();
+            }, 1200);
+            
+            // Screen shake effect
+            document.body.style.animation = 'titanShake 1s ease-in-out';
+            setTimeout(() => {
+                document.body.style.animation = '';
+            }, 1000);
+        });
+
+        // Add titan shake animation
+        const shakeStyle = document.createElement('style');
+        shakeStyle.textContent = `
+            @keyframes titanShake {
+                0%, 100% { transform: translateX(0) translateY(0); }
+                25% { transform: translateX(-15px) translateY(-10px); }
+                50% { transform: translateX(15px) translateY(10px); }
+                75% { transform: translateX(-10px) translateY(-15px); }
+            }
+        `;
+        document.head.appendChild(shakeStyle);
+
+        // Random titan effects
+        setInterval(() => {
+            if (Math.random() < 0.04) {
+                const titanEffect = document.createElement('div');
+                titanEffect.className = 'titan-effect';
+                titanEffect.style.left = Math.random() * window.innerWidth + 'px';
+                titanEffect.style.top = Math.random() * window.innerHeight + 'px';
+                document.body.appendChild(titanEffect);
+                
+                setTimeout(() => {
+                    titanEffect.remove();
+                }, 1200);
+            }
+        }, 4000);
+
+        // Soldier transformation effect
+        const soldierCards = document.querySelectorAll('.soldier-card');
+        soldierCards.forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-15px) scale(1.05) rotate(2deg)';
+                this.style.boxShadow = '0 25px 50px rgba(231, 76, 60, 0.4)';
+                this.style.borderColor = 'var(--aot-accent)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = '';
+                this.style.boxShadow = '';
+                this.style.borderColor = '';
+            });
+        });
+
+        // Wall breach effect
+        const wallBreach = () => {
+            document.body.style.animation = 'wallBreach 2s ease-in-out';
+            setTimeout(() => {
+                document.body.style.animation = '';
+            }, 2000);
+        };
+
+        // Add wall breach animation
+        const wallBreachStyle = document.createElement('style');
+        wallBreachStyle.textContent = `
+            @keyframes wallBreach {
+                0% { filter: brightness(1) contrast(1); }
+                50% { filter: brightness(1.5) contrast(1.2); }
+                100% { filter: brightness(1) contrast(1); }
+            }
+        `;
+        document.head.appendChild(wallBreachStyle);
+
+        // Trigger wall breach on specific key combination
+        let keySequence = [];
+        document.addEventListener('keydown', (e) => {
+            keySequence.push(e.key);
+            if (keySequence.length > 3) keySequence.shift();
+            
+            if (keySequence.join('') === 'wab') {
+                wallBreach();
+                keySequence = [];
+            }
+        });
+    </script>
+</body>
+</html> 

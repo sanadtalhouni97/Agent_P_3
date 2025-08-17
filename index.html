@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AnimeVerse - Your Ultimate Anime Experience</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Floating Icons -->
+    <div class="floating-icons">
+        <div class="floating-icon" data-speed="2">🎌</div>
+        <div class="floating-icon" data-speed="1.5">⚡</div>
+        <div class="floating-icon" data-speed="3">🌟</div>
+        <div class="floating-icon" data-speed="2.5">💫</div>
+        <div class="floating-icon" data-speed="1.8">🎭</div>
+        <div class="floating-icon" data-speed="2.2">🔥</div>
+        <div class="floating-icon" data-speed="1.3">✨</div>
+        <div class="floating-icon" data-speed="2.8">🎪</div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <span class="logo-text">AnimeVerse</span>
+                <span class="logo-emoji">🎌</span>
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item"><a href="#home" class="nav-link">Home 🏠</a></li>
+                <li class="nav-item"><a href="#trending" class="nav-link">Trending 🔥</a></li>
+                <li class="nav-item"><a href="#genres" class="nav-link">Genres 📚</a></li>
+                <li class="nav-item"><a href="#about" class="nav-link">About ℹ️</a></li>
+                <li class="nav-item"><a href="#contact" class="nav-link">Contact 📞</a></li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1 class="hero-title">
+                Welcome to <span class="highlight">AnimeVerse</span> 
+                <span class="emoji">🌟</span>
+            </h1>
+            <p class="hero-subtitle">
+                Discover the ultimate anime experience with stunning visuals and epic stories! 
+                <span class="emoji">✨</span>
+            </p>
+            <div class="hero-buttons">
+                <button class="btn btn-primary">
+                    Explore Now <span class="emoji">🚀</span>
+                </button>
+                <button class="btn btn-secondary">
+                    Watch Trailer <span class="emoji">🎬</span>
+                </button>
+            </div>
+        </div>
+        <div class="hero-visual">
+            <div class="anime-character">
+                <div class="character-circle">
+                    <span class="character-emoji">👾</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Trending Section -->
+    <section id="trending" class="trending">
+        <div class="container">
+            <h2 class="section-title">
+                Trending Anime <span class="emoji">🔥</span>
+            </h2>
+            <div class="anime-grid">
+                <div class="anime-card" data-aos="fade-up">
+                    <div class="anime-image">
+                        <span class="anime-emoji">⚔️</span>
+                    </div>
+                    <div class="anime-info">
+                        <h3>Demon Slayer</h3>
+                        <p>Epic sword battles and demon hunting</p>
+                        <div class="rating">
+                            <span class="stars">⭐⭐⭐⭐⭐</span>
+                            <span class="score">9.2</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="anime-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="anime-image">
+                        <span class="anime-emoji">🏀</span>
+                    </div>
+                    <div class="anime-info">
+                        <h3>Kuroko's Basketball</h3>
+                        <p>High school basketball with supernatural powers</p>
+                        <div class="rating">
+                            <span class="stars">⭐⭐⭐⭐⭐</span>
+                            <span class="score">8.8</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="anime-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="anime-image">
+                        <span class="anime-emoji">🎭</span>
+                    </div>
+                    <div class="anime-info">
+                        <h3>Jujutsu Kaisen</h3>
+                        <p>Modern sorcery and cursed spirits</p>
+                        <div class="rating">
+                            <span class="stars">⭐⭐⭐⭐⭐</span>
+                            <span class="score">9.0</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="anime-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="anime-image">
+                        <span class="anime-emoji">🌊</span>
+                    </div>
+                    <div class="anime-info">
+                        <h3>One Piece</h3>
+                        <p>Epic pirate adventure across the seas</p>
+                        <div class="rating">
+                            <span class="stars">⭐⭐⭐⭐⭐</span>
+                            <span class="score">9.5</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Genres Section -->
+    <section id="genres" class="genres">
+        <div class="container">
+            <h2 class="section-title">
+                Explore Genres <span class="emoji">📚</span>
+            </h2>
+            <div class="genre-grid">
+                <div class="genre-card" data-aos="zoom-in">
+                    <div class="genre-icon">⚔️</div>
+                    <h3>Action</h3>
+                    <p>Epic battles and thrilling adventures</p>
+                </div>
+                <div class="genre-card" data-aos="zoom-in" data-aos-delay="100">
+                    <div class="genre-icon">💕</div>
+                    <h3>Romance</h3>
+                    <p>Heartwarming love stories</p>
+                </div>
+                <div class="genre-card" data-aos="zoom-in" data-aos-delay="200">
+                    <div class="genre-icon">🎭</div>
+                    <h3>Drama</h3>
+                    <p>Emotional and compelling narratives</p>
+                </div>
+                <div class="genre-card" data-aos="zoom-in" data-aos-delay="300">
+                    <div class="genre-icon">😂</div>
+                    <h3>Comedy</h3>
+                    <p>Laugh-out-loud moments</p>
+                </div>
+                <div class="genre-card" data-aos="zoom-in" data-aos-delay="400">
+                    <div class="genre-icon">🔮</div>
+                    <h3>Fantasy</h3>
+                    <p>Magical worlds and creatures</p>
+                </div>
+                <div class="genre-card" data-aos="zoom-in" data-aos-delay="500">
+                    <div class="genre-icon">🎮</div>
+                    <h3>Gaming</h3>
+                    <p>Virtual reality adventures</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-text" data-aos="fade-right">
+                    <h2 class="section-title">
+                        About AnimeVerse <span class="emoji">ℹ️</span>
+                    </h2>
+                    <p>
+                        Welcome to AnimeVerse, your ultimate destination for all things anime! 
+                        We're passionate about bringing you the best anime content from around the world. 
+                        From classic series to the latest releases, we've got everything you need to satisfy 
+                        your anime cravings! <span class="emoji">🌟</span>
+                    </p>
+                    <div class="features">
+                        <div class="feature">
+                            <span class="feature-icon">🎬</span>
+                            <span>HD Quality Streaming</span>
+                        </div>
+                        <div class="feature">
+                            <span class="feature-icon">📱</span>
+                            <span>Mobile Friendly</span>
+                        </div>
+                        <div class="feature">
+                            <span class="feature-icon">🌍</span>
+                            <span>Global Content</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-visual" data-aos="fade-left">
+                    <div class="stats-container">
+                        <div class="stat-item">
+                            <div class="stat-number">1000+</div>
+                            <div class="stat-label">Anime Series</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">50K+</div>
+                            <div class="stat-label">Happy Users</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">24/7</div>
+                            <div class="stat-label">Support</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2 class="section-title">
+                Get In Touch <span class="emoji">📞</span>
+            </h2>
+            <div class="contact-content">
+                <div class="contact-info" data-aos="fade-right">
+                    <div class="contact-item">
+                        <span class="contact-icon">📧</span>
+                        <div>
+                            <h3>Email</h3>
+                            <p>hello@animeverse.com</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <span class="contact-icon">📱</span>
+                        <div>
+                            <h3>Phone</h3>
+                            <p>+1 (555) 123-4567</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <span class="contact-icon">📍</span>
+                        <div>
+                            <h3>Location</h3>
+                            <p>Tokyo, Japan</p>
+                        </div>
+                    </div>
+                </div>
+                <form class="contact-form" data-aos="fade-left">
+                    <div class="form-group">
+                        <input type="text" placeholder="Your Name" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" placeholder="Your Email" required>
+                    </div>
+                    <div class="form-group">
+                        <textarea placeholder="Your Message" rows="5" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">
+                        Send Message <span class="emoji">📤</span>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>AnimeVerse <span class="emoji">🎌</span></h3>
+                    <p>Your ultimate anime destination</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-facebook"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#trending">Trending</a></li>
+                        <li><a href="#genres">Genres</a></li>
+                        <li><a href="#about">About</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Support</h4>
+                    <ul>
+                        <li><a href="#">Help Center</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                        <li><a href="#">Contact Us</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 AnimeVerse. All rights reserved. <span class="emoji">🌟</span></p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html> 
